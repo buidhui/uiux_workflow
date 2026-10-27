@@ -4,7 +4,7 @@ Quy trình cho UI/UX Designer làm việc cùng AI, từ lúc PO có PRD đã du
 
 Repo kế thừa hướng dẫn cũ của team (`User Guide_UI-UX- Workflow w AI.md`), tham khảo khung engine và domain của PO-Workflow, và đối chiếu với phần thiết kế của AWS AI-DLC.
 
-Trạng thái: engine v0.8.1, chưa gắn sản phẩm nào. Kiến thức nghề trong `engine/knowledge/` còn một phần ở dạng khung. Product KB được định nghĩa ở [DOMAIN-SETUP.md](DOMAIN-SETUP.md), điền khi chạy thật.
+Trạng thái: engine v0.9, chưa gắn sản phẩm nào. Kiến thức nghề trong `engine/knowledge/` đã viết đủ mười một file; thang chấm review chưa hiệu chỉnh. Product KB được định nghĩa ở [DOMAIN-SETUP.md](DOMAIN-SETUP.md), điền khi chạy thật.
 
 ## Cài đặt
 
@@ -204,12 +204,14 @@ intents/<yymmdd-slug>/
 | Discovery chi tiết, bản kê thay đổi, review chấm điểm, fix-prompt, luật thao tác Figma | Bộ skill VIC |
 | Gap log, đề xuất bổ sung kit, không vẽ tay phần kit thiếu | Cách làm của các bộ skill dựng kit trên Figma |
 | Design ref, reference lock | `refero-design` |
+| Kiến thức nghề trong `engine/knowledge/` | Bộ skill VIC, `refero-design`, AWS AI-DLC Design Agent (MIT-0), WCAG 2.2, Nielsen, hướng dẫn cũ của team; nguồn chi tiết ở cuối từng file |
+| Bảng chọn biểu đồ, script kiểm prototype HTML | `ui-ux-pro-max-skill` (MIT): `charts.csv`, `design-audit.mjs` |
 
 ## Việc còn lại
 
 | # | Việc | Ghi chú |
 |---|---|---|
-| 1 | Chuyển nội dung còn lại vào `engine/knowledge/` | Có thể chép kiến thức của Design Agent AWS (MIT-0) cho heuristic, accessibility, interaction pattern |
+| 1 | Hiệu chỉnh `engine/knowledge/scorecard.md` | Agent và Designer chấm độc lập cùng một bộ màn, theo mục Hiệu chỉnh của file |
 | 2 | Kiểm các khả năng ghi "Kiểm khi cài" ở `USER-GUIDE.md` mục A3 trên một file thật: dựng instance, lưu version, đọc design context để sinh HTML | Ghi kết quả vào `.uiux/setup.md` |
 | 3 | Chạy thử với một sản phẩm thật, dựng Product KB mức Tối thiểu | |
 | 4 | Lộ trình AI-DLC | Sau khi luồng SDLC chạy ổn |
@@ -225,3 +227,4 @@ intents/<yymmdd-slug>/
 | 2026-10-22 | v0.7: gộp `SETUP.md` vào USER-GUIDE thành Phần A; thêm lệnh `/setup` tự cài đặt từ link repo và làm tiếp sau khi mở lại; trạng thái cài đặt và cách kết nối Figma của từng máy chuyển sang `.uiux/setup.md` (không đưa lên git), bỏ khỏi Product KB mục 6; repo sản phẩm dùng remote `engine` để lấy bản cập nhật engine |
 | 2026-10-22 | v0.8: tách phần chung và phần riêng theo cơ chế của PO-Workflow. Engine chuyển từ `.claude/` sang `engine/` (`stages/` cho tám stage, `commands/` cho lệnh tiện ích); khung Product KB sang `engine/templates/domain/`; dữ liệu sản phẩm ở `domain/`, `intents/`, `adhoc/`, `memory/`; trạng thái cài đặt của máy ở `.uiux/`. `.claude/` chỉ còn lối tắt; bỏ lệnh riêng của từng stage, `/ux` là lối vào. Luật vận hành chuyển sang `AGENTS.md`, `CLAUDE.md` chỉ trỏ về. Nâng cấp repo sản phẩm tạo từ v0.7 trở về trước: chuyển dữ liệu ở `.claude/knowledge/domain/`, `.claude/intents/`, `.claude/adhoc/`, `.claude/memory/`, `.claude/local/` sang thư mục mới trước khi `git pull engine main` |
 | 2026-10-22 | v0.8.1: bỏ tên công ty và đường dẫn cụ thể của một công cụ dựng kit khỏi README, USER-GUIDE, DOMAIN-SETUP; viết lại thành điều kiện đúng với mọi sản phẩm |
+| 2026-10-27 | v0.9: khung Product KB mục 5, 6 có bảng theo module cho sản phẩm có nhiều module dùng kit và file Figma riêng; D2 có cột Module. Gap log luôn có nơi ghi dự phòng `domain/gap-log.md`. Kiểm prototype HTML theo ba bậc, không ghi "đã chạy thử" khi chưa chạy được trình duyệt. Slug intent dùng mã intent của PO khi có. Hộp xác nhận, modal có mã SCR. Sau mỗi gate AI đề xuất commit. H1 ghim version Figma cho mọi link bàn giao. Nâng cấp repo sản phẩm: bổ sung bảng module vào `domain/domain.md` mục 5, 6 khi cần; intent đã tạo giữ slug cũ. Viết đủ knowledge nghề: đọc yêu cầu, phân tích flow, rà trường hợp biên, UX writing tiếng Việt, design ref, heuristic, accessibility theo WCAG 2.2, thang chấm review có công thức chia theo số màn (chưa hiệu chỉnh). Thống nhất mã màn `SCR<n>` trong template. Thêm `data-visualization.md` (chọn biểu đồ theo câu hỏi) và script `engine/scripts/prototype-audit.mjs` kiểm prototype HTML tự động (bậc 2), dựa trên ui-ux-pro-max-skill (MIT) |

@@ -18,7 +18,7 @@ argument-hint: <intent-slug>
 | Archive | yes |
 | Template | `engine/templates/design-strategy.md` · `engine/templates/flow-map.md` |
 | Checklist | `engine/verification/design-strategy.md` |
-| Knowledge | `engine/protocol/design-levels.md` · `engine/knowledge/flow-analysis.md` · `screen-states.md` · `edge-case-sweep.md` · `accessibility.md` · `prototyping.md` (flow prototype) · KB mục 4, 5, 9 |
+| Knowledge | `engine/protocol/design-levels.md` · `engine/knowledge/flow-analysis.md` · `screen-states.md` · `edge-case-sweep.md` · `accessibility.md` · `prototyping.md` (flow prototype) · `data-visualization.md` (màn có biểu đồ) · KB mục 4, 5, 9 |
 
 Chạy theo `engine/protocol/stage-protocol.md`. Tương ứng Step 2, 3 của hướng dẫn cũ, và stage 2.5 Refined Mockups của AWS AI-DLC ở mức chiến lược (README mục "AWS AI-DLC làm phần thiết kế như thế nào").
 
@@ -29,7 +29,7 @@ Biến PRD thành chiến lược thiết kế đủ để các bên (PO, Dev, Q
 1. Flow: flow chính, phụ, lỗi; sơ đồ Mermaid, mỗi node là một màn có mã, nhãn mũi tên là thao tác người dùng. PRD có vòng đời trạng thái thì màn hiển thị trạng thái phải khớp sơ đồ trạng thái của PRD.
 2. Màn: danh sách màn mới, sửa, mirror; mỗi màn ghi user story mà nó phục vụ; vị trí trong app; màn hiện có bị ảnh hưởng. Mỗi user story có giao diện trong PRD phải có ít nhất một màn. CR trên màn có sẵn dùng bản kê thay đổi.
 3. State: mỗi màn bảy state theo `screen-states.md`.
-4. Mức thiết kế: mỗi màn L1, L2, L3 và độ phức tạp logic theo `design-levels.md`, kèm lý do, đối chiếu kit usage và gap log của sản phẩm.
+4. Mức thiết kế: mỗi màn L1, L2, L3 và độ phức tạp logic theo `design-levels.md`, kèm lý do, đối chiếu kit usage và gap log của module chứa màn (KB mục 5). Hộp xác nhận, modal, drawer có nội dung riêng được cấp mã SCR riêng, để Story List và QA trỏ tới được.
 5. Ánh xạ UI kit: vùng chính của mỗi màn dùng component nào của kit. Phần kit chưa có ghi `GAP` và đề xuất hướng xử lý: dùng tạm component có sẵn, hoặc đề xuất bổ sung vào kit qua `/kit-proposal` (đề xuất, chưa dựng).
 6. Trường hợp biên và permission: bước riêng, độ sâu theo từng màn. Gắn mức Must, Should, Optional.
 7. Accessibility: mức theo KB mục 9; điểm cần lưu ý từng màn (tương phản, bàn phím, nhãn, cỡ chữ).
@@ -48,7 +48,7 @@ Biến PRD thành chiến lược thiết kế đủ để các bên (PO, Dev, Q
 ## Generate
 - `design-strategy.md` theo template: bản đầy đủ dùng nội bộ, có bảng duyệt từng dòng. Mọi màn L1 có thêm UX Brief nén (component và nội dung chữ từng màn).
 - `flow-map.md`: phụ lục phân tích, chỉ khi có flow mới hoặc màn mới.
-- `GAP` mới ghi vào gap log của sản phẩm theo KB mục 5.
+- `GAP` mới ghi vào gap log của module theo KB mục 5; module chưa khai nơi lưu gap log thì ghi vào `domain/gap-log.md`. Không để GAP chỉ nằm trong chiến lược.
 
 ## Gate
 Strategy Gate. Designer duyệt từng dòng của bảng duyệt. AI không tự quyết định: đổi flow chính; thêm màn ngoài yêu cầu gốc; modal hoặc page lệch pattern của app; mức thiết kế của màn; ý kiến Đề xuất sửa hoặc Phản đối PRD; assumption thuộc nhóm thao tác không hoàn tác.

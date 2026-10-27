@@ -54,3 +54,4 @@ Từ lần Need Revision thứ ba, AI đề xuất Approved with Notes kèm đi�
 3. `state.md`: `[x]`, bảng Versions, stage kế tiếp, việc kế tiếp.
 4. Frontmatter artifact: `status: approved`, `approved_at`, `version` thành số nguyên kế tiếp.
 5. Dòng tiến độ: `Progress: <đã xong>/<tổng stage> · Next: <tên stage kế>`.
+6. Đề xuất một dòng: commit thư mục intent và các file KB vừa đổi trong repo sản phẩm, message `<slug>: <mã stage> approved`. Commit khi Designer đồng ý; push lên remote của sản phẩm chỉ khi Designer yêu cầu. Việc chưa commit qua nhiều ngày dễ mất khi đổi máy hoặc xoá nhầm.

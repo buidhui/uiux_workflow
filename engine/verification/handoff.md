@@ -6,6 +6,7 @@
 - [ ] Nội dung chữ rõ ràng; trường hợp biên và permission đã thể hiện
 - [ ] **[BLOCK]** Góp ý của Dev đã xử lý
 - [ ] Frame đã ở page chính; tên frame và layer rõ ràng; link sẵn sàng
+- [ ] **[BLOCK]** Đã lưu version bàn giao trên Figma; mọi link trong `delivery-summary.md` và file thiết kế UX trên repo PO ghi kèm version đó
 
 ## Tài liệu
 - [ ] **[BLOCK]** Mỗi màn có ghi chú bàn giao trên Figma: điều kiện hiện state, tương tác, giới hạn chữ, điểm Dev tự quyết định

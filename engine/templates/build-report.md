@@ -18,7 +18,7 @@ date: <YYYY-MM-DD>
 ## 2. Độ phủ scope
 | Dòng scope | Node ID | Component (variant) | Trạng thái |
 |---|---|---|---|
-| SCR-01 section 1 | | | Xong · GAP · Chưa |
+| SCR1 section 1 | | | Xong · GAP · Chưa |
 
 ## Ghi chú cho reviewer
 

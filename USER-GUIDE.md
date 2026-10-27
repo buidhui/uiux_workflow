@@ -43,7 +43,7 @@ Với công cụ khác Claude Code, agent review độc lập có thể không c
 |---|---|---|
 | Git | Tải repo, làm việc với repo của PO | macOS: chạy `xcode-select --install` và bấm Cài đặt. Windows: tải từ git-scm.com |
 | Claude Code CLI (lệnh `claude` trong terminal) | Thêm kết nối Figma lựa chọn B, C | Theo tài liệu cài đặt của Claude Code |
-| Node.js bản LTS | Lựa chọn C | Tải từ nodejs.org |
+| Node.js bản LTS | Lựa chọn C; script kiểm prototype tự động (tuỳ chọn) | Tải từ nodejs.org. Script cài theo `engine/scripts/README.md` |
 
 ### A3. Kết nối Figma
 
@@ -131,6 +131,7 @@ AI chỉ commit và push khi Designer yêu cầu.
 | Chưa có UI kit | Mức sẵn sàng 0; Designer dựng UI; mọi màn có phần chưa có trong app được xếp tối thiểu L2 |
 | Có công cụ dựng kit (ví dụ một bộ skill dựng kit) | Khai trong Product KB mục 5; `/kit-proposal` chuyển đề xuất cho công cụ đó ở bước đề xuất |
 | Không có công cụ dựng kit | `/kit-proposal` ghi đề xuất vào gap log; người phụ trách kit đọc và xử lý |
+| Muốn AI kiểm prototype tự động ở nhiều cỡ màn hình | Cài script theo `engine/scripts/README.md`; không cài thì AI dùng cách kiểm bậc thấp hơn ở `prototyping.md` |
 | Biết thư viện component của frontend | Prototype dùng thư viện đó qua CDN, giống sản phẩm thật nhất |
 | Không biết thư viện frontend, hoặc thư viện không tải được trong một file HTML | Prototype dùng HTML và CSS theo token của Product KB |
 | Cần chia sẻ prototype cho người không có repo | Gửi file `index.html`; người nhận mở bằng trình duyệt, không cần cài đặt. Nếu môi trường có công cụ đăng trang (ví dụ artifact của claude.ai), có thể đăng thành link riêng tư |

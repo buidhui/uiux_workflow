@@ -24,7 +24,8 @@ Mục 1, 2, 5 (file kit, mức sẵn sàng), 6, 11 theo bảng ở `DOMAIN-SETUP
 ## 3. Ghi
 - `domain/domain.md`: mười một mục, đường dẫn trước, nội dung ngắn sau.
 - Đánh giá mức sẵn sàng design system theo `engine/protocol/figma-protocol.md` mục 1; không ghi mức cao hơn bằng chứng.
-- File trong KB chỉ tạo cho nội dung chưa có nguồn: `gap-log.md`, `content-guide.md`, `corner-checklist.md`, `frontend-stack.md`, `app-map/`, `assets/`.
+- File trong KB chỉ tạo cho nội dung chưa có nguồn: `content-guide.md`, `corner-checklist.md`, `frontend-stack.md`, `app-map/`, `assets/`.
+- Luôn giữ `gap-log.md`, kể cả khi công cụ dựng kit có gap log riêng: đây là nơi ghi dự phòng cho module chưa khai hoặc không mở được nơi lưu.
 - `memory/team.md` về bản trống, thêm dòng ngày khởi tạo.
 
 ## 4. Mức Hiệu quả

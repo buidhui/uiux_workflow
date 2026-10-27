@@ -35,16 +35,24 @@ Manifest của knowledge base sản phẩm. Engine đọc file này ở đầu m
 - Ảnh màn đang chạy (`assets/screens/` hoặc link):
 
 ## 5. Design system và UI kit
+Sản phẩm có nhiều ứng dụng con hoặc module dùng kit khác nhau: điền bảng dưới, mỗi module một dòng; các dòng còn lại của mục này ghi phần dùng chung.
+
+| Module | File UI kit (link, file key) | Hướng dẫn dùng kit | Gap log | Mức sẵn sàng, ngày kiểm |
+|---|---|---|---|---|
+
 - File design system gốc và file UI kit của sản phẩm (link, file key):
 - Hướng dẫn dùng kit trên màn (vùng màn hình sang component):
 - Luật design system (màu theo vai trò, chữ, khoảng cách, bo góc, layout) hoặc đường dẫn:
-- Gap log (đường dẫn, định dạng mục):
+- Gap log (đường dẫn, định dạng mục). Chưa có nơi lưu của công cụ dựng kit thì dùng `domain/gap-log.md`:
 - Người phụ trách kit, người phụ trách design system:
 - Công cụ dựng kit dùng cho `/kit-proposal` (ví dụ skill dựng kit) và cách gọi ở chế độ đề xuất:
 - Mức sẵn sàng (0, 1, 2 theo `engine/protocol/figma-protocol.md` mục 1) và lý do:
 
 ## 6. Figma workspace
-- File thiết kế sản phẩm theo module (link, file key):
+| Module | File thiết kế (link, file key) | Khu vực nháp cho AI |
+|---|---|---|
+
+- File thiết kế sản phẩm theo module (link, file key), khi chỉ có một module:
 - Cấu trúc page, section; nơi đặt màn chính:
 - Khu vực nháp cho AI (page hoặc branch):
 - Quy ước đặt tên frame:

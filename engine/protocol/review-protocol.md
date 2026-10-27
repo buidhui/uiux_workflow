@@ -18,7 +18,7 @@ Review độc lập do agent `ux-lead` làm. Agent không thấy cuộc hội th
 
 ## Tiêu chí scope review
 1. Mỗi user task có flow, mỗi bước flow có màn. Thiếu là finding.
-2. Mỗi màn khai đủ sáu state, mỗi state có lý do.
+2. Mỗi màn khai đủ bảy state theo `screen-states.md`, mỗi state có lý do.
 3. Edge case Must đã vào scope, hoặc được ghi rõ là ngoài phạm vi kèm lý do.
 4. Biên rõ: trong phạm vi, ngoài phạm vi, để sau.
 5. Không có màn, flow ngoài yêu cầu gốc mà chưa có quyết định của Designer.

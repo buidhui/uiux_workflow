@@ -18,7 +18,7 @@ argument-hint: <intent-slug>
 | Archive | yes |
 | Template | `engine/templates/ux-brief.md` |
 | Checklist | `engine/verification/ux-brief.md` |
-| Knowledge | `engine/protocol/design-levels.md` · `engine/knowledge/ux-writing-vi.md` · `reference-research.md` (L3) · KB mục 5 (design system, kit), mục 8 (nội dung), mục 10 (tham chiếu), `assets/` |
+| Knowledge | `engine/protocol/design-levels.md` · `engine/knowledge/ux-writing-vi.md` · `reference-research.md` (L3) · `data-visualization.md` (màn có biểu đồ) · KB mục 5 (design system, kit), mục 8 (nội dung), mục 10 (tham chiếu), `assets/` |
 
 Chạy theo `engine/protocol/stage-protocol.md`. Tương ứng Step 5 và Step 5.1 trong tài liệu hướng dẫn cũ.
 

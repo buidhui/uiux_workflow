@@ -60,7 +60,7 @@ Thuật ngữ và họ mã của UIUX-Workflow. Tên phản hồi và state theo
 |---|---|---|
 | `UT-NN` | User task | D1 |
 | `FLOW-NN` | Flow | D2 |
-| `SCR` | Màn hình, theo quy ước mã màn dùng chung với PO (Product KB mục 2); mặc định `SCR<n>` trong intent | D2 |
+| `SCR` | Màn hình, theo quy ước mã màn dùng chung với PO (Product KB mục 2); mặc định `SCR<n>` trong intent. Hộp xác nhận, modal, drawer có nội dung riêng cũng có mã SCR | D2 |
 | `EC-NN` | Trường hợp biên | D2 |
 | `GAP-NNN` | Mục trong gap log của sản phẩm | D2 đến R1 |
 | `OQ-NN` | Câu hỏi mở cho PO, Dev, QA | D1 đến R1 |

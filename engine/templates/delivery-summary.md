@@ -10,6 +10,7 @@ status: draft
 <Ba dòng.>
 
 Link Figma cuối: <link>
+Version bàn giao trên Figma: <tên version, ngày lưu>
 
 ## 2. Màn đã thiết kế
 | Màn | Link frame | Ghi chú bàn giao trên Figma |

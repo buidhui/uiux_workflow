@@ -7,7 +7,7 @@ status: Running
 | | |
 |---|---|
 | Đường đi | <một dòng, theo design-levels.md> |
-| Design system | mức <0/1/2> theo KB mục 5, ngày kiểm <YYYY-MM-DD> |
+| Design system | mức <0/1/2> theo KB mục 5, ngày kiểm <YYYY-MM-DD>; nhiều module thì ghi từng module |
 | Created | <YYYY-MM-DD> |
 
 ## Stages

@@ -14,9 +14,9 @@ status: draft
 ## 2. Sơ đồ flow
 ```mermaid
 flowchart LR
-  A[SCR-01 Tên màn] -->|hành động| B{Quyết định}
-  B -->|đúng| C[SCR-02]
-  B -->|lỗi| E[SCR-01 Error]
+  A[SCR1 Tên màn] -->|hành động| B{Quyết định}
+  B -->|đúng| C[SCR2]
+  B -->|lỗi| E[SCR1 Error]
 ```
 FigJam: <link, nếu đã đẩy>
 
@@ -31,7 +31,7 @@ Nhánh và điều kiện:
 ## 4. Danh sách màn
 | SCR | Tên | Mới · Sửa · Mirror | Vị trí trong app | Flow | Node Figma | Mức thiết kế | Logic | Lý do gán mức |
 |---|---|---|---|---|---|---|---|---|
-| SCR-01 | | | page · modal · drawer · bottom sheet | FLOW-01 | | L1 · L2 · L3 | Thường · Phức tạp | |
+| SCR1 | | | page · modal · drawer · bottom sheet | FLOW-01 | | L1 · L2 · L3 | Thường · Phức tạp | |
 
 ## 5. State từng màn
 Theo `engine/knowledge/screen-states.md`. Mỗi ô: có, không kèm lý do, hoặc GAP.
@@ -49,7 +49,7 @@ Theo `engine/knowledge/screen-states.md`. Mỗi ô: có, không kèm lý do, ho�
 ### Cấp màn
 | EC | Màn | Nhóm | Tình huống | Cách xử lý trên giao diện | Nội dung đề xuất | Mức |
 |---|---|---|---|---|---|---|
-| EC-01 | SCR-01 | Nhập liệu · Quyền · Hệ thống và mạng · Giới hạn dữ liệu · Không hoàn tác | | | | Must · Should · Optional |
+| EC-01 | SCR1 | Nhập liệu · Quyền · Hệ thống và mạng · Giới hạn dữ liệu · Không hoàn tác | | | | Must · Should · Optional |
 
 ### Permission
 | Vai | Màn hoặc phần tử | Thấy gì | Làm được gì | Thể hiện khi bị chặn |

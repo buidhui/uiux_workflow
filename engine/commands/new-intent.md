@@ -9,7 +9,7 @@ Tạo việc và đi thẳng vào D1, không dừng giữa chừng. Đường đ
 ## Đầu vào
 `$ARGUMENTS`: tên do Designer đặt, có thể kèm mô tả, đường dẫn tài liệu, link Jira hoặc Lark, link Figma, ảnh wireframe của PO, design ref, hoặc đường dẫn một file review ở `adhoc/` (việc cải tiến do Designer tự khởi xướng). Thiếu tên thì lấy tên từ tài liệu, không hỏi.
 
-Slug: bỏ dấu, chữ thường, gạch nối, tiền tố ngày `YYMMDD-`. Trùng slug đã có: báo và hỏi dùng tiếp hoặc đặt tên khác.
+Slug: PO đã có mã intent thì dùng đúng mã đó, để một việc có cùng mã ở repo PO và repo UIUX. Chưa có mã: bỏ dấu, chữ thường, gạch nối, tiền tố ngày `YYMMDD-`. Trùng slug đã có: báo và hỏi dùng tiếp hoặc đặt tên khác.
 
 ## 1. Domain tối thiểu
 Chưa có `.uiux/setup.md` hoặc trạng thái khác `xong`: chạy `/setup` trước, sau đó quay lại bước này.

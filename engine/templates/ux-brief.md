@@ -14,7 +14,7 @@ ux_scope_version: <n>
 ## 2. Từng màn
 <Lặp khối dưới cho mỗi màn L2, L3.>
 
-### SCR-01 <tên> · L2
+### SCR1 <tên> · L2
 Mục tiêu màn: <người dùng đến đây để làm gì, xong khi nào>
 
 Thứ bậc thông tin:
@@ -46,7 +46,7 @@ Mô tả state:
 | State | Hiện khi | Nội dung, cách thể hiện |
 |---|---|---|
 
-### SCR-02 <tên> · L3
+### SCR2 <tên> · L3
 Design ref:
 | Ref | Nguồn | Học gì (cấu trúc, cảm quan) | Không lấy gì |
 |---|---|---|---|

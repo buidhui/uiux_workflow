@@ -18,7 +18,7 @@ argument-hint: <intent-slug>
 | Archive | no; file nằm trong intent, version ở `prototype-report.md` |
 | Template | `engine/templates/prototype-report.md` |
 | Checklist | `engine/verification/prototype.md` |
-| Knowledge | `engine/knowledge/prototyping.md` · KB mục 7 |
+| Knowledge | `engine/knowledge/prototyping.md` · `accessibility.md` · KB mục 7, mục 9 (ngưỡng vùng chạm) · script `engine/scripts/prototype-audit.mjs` (tuỳ chọn) |
 
 Chạy theo `engine/protocol/stage-protocol.md`.
 
@@ -41,7 +41,7 @@ Vì vậy: HTML là đầu ra chính. Figma prototype chỉ nối điều hướ
 1. Lấy cấu trúc từng màn từ Figma (đọc design context của frame), nội dung chữ thật, state đã vẽ. Không đọc được Figma (lựa chọn D ở `USER-GUIDE.md` mục A3): dựng từ chiến lược, UX Brief và ảnh Designer gửi; ghi trong `prototype-report.md` rằng cấu trúc lấy từ ảnh.
 2. Dựng `index.html` một file theo `prototyping.md`: điều hướng theo `flow-map.md`; dùng thư viện component và theme theo KB mục 7, không có thì HTML và CSS theo token của KB; bảng điều khiển đổi state, vai, bộ dữ liệu; dữ liệu mẫu thực tế.
 3. Hành vi theo rule đã thống nhất: validate, điều kiện hiện, quyền. Rule chưa được xác định thì hiện chú thích, không tự đặt.
-4. Kiểm: mở bằng trình duyệt, đi trọn từng flow, chụp màn hình từng màn, so với frame Figma, ghi điểm lệch.
+4. Kiểm theo bậc ở `prototyping.md` mục Cách kiểm prototype: mở bằng trình duyệt, đi trọn từng flow, chụp màn hình từng màn, so với frame Figma, ghi điểm lệch và bậc kiểm đã dùng.
 5. Figma prototype (tuỳ): nối điều hướng giữa frame theo flow chính trong khu vực nháp, theo `figma-protocol.md`. Không nói đã chạy thử.
 
 ## Generate

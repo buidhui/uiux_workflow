@@ -13,7 +13,7 @@ File này là hướng dẫn chung cho mọi công cụ AI; `CLAUDE.md` chỉ tr
 
 | Thư mục, file | Thuộc | Nội dung | Khi lấy bản engine mới |
 |---|---|---|---|
-| `engine/` | Chung | `stages/` tám stage, `commands/` lệnh tiện ích, `protocol/`, `templates/` (gồm `templates/domain/` là khung Product KB), `verification/`, `knowledge/` kiến thức nghề, `agents/` vai reviewer | Thay theo engine |
+| `engine/` | Chung | `stages/` tám stage, `commands/` lệnh tiện ích, `protocol/`, `templates/` (gồm `templates/domain/` là khung Product KB), `verification/`, `knowledge/` kiến thức nghề, `agents/` vai reviewer, `scripts/` script hỗ trợ | Thay theo engine |
 | `.claude/` | Chung | Cấu hình riêng cho Claude Code: mỗi lệnh và agent là lối tắt trỏ tới file trong `engine/` | Thay theo engine |
 | `AGENTS.md`, `CLAUDE.md`, `README.md`, `USER-GUIDE.md`, `GLOSSARY.md`, `DOMAIN-SETUP.md` | Chung | Tài liệu và luật vận hành | Thay theo engine |
 | `domain/` | Riêng sản phẩm | Product KB; repo engine chỉ có `README.md` | Giữ nguyên |
@@ -84,6 +84,7 @@ Repo engine để trống `domain/`. Chưa có `domain/domain.md` nghĩa là rep
 | `❓Designer` | Quyết định thiết kế chưa có, Designer quyết định tại gate |
 | `GAP` | UI kit hoặc design system của sản phẩm chưa có thành phần cần dùng. Ghi vào gap log, đề xuất bằng `/kit-proposal`, không tự chế |
 | `[suy ra]` | AI suy luận từ nguồn; nguồn không nói trực tiếp |
+| `⚑` | Yêu cầu phi chức năng có ảnh hưởng tới giao diện, hoặc vượt khả năng của design system hiện có (D1) |
 | `~` đầu tên frame | Frame tự dựng ngoài thư viện, chỉ khi Designer cho phép |
 
 ## Cách làm việc

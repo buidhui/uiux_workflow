@@ -33,4 +33,16 @@ Dùng ở D2 (flow prototype, tuỳ chọn) và E3 (prototype HTML). Mục tiêu
 ## Không làm
 - Không đưa dữ liệu thật của khách hàng vào dữ liệu mẫu.
 - Không gọi API, không lưu dữ liệu ra ngoài trình duyệt.
+
+## Cách kiểm prototype
+
+Dùng bậc cao nhất máy đang có, ghi bậc đã dùng vào báo cáo:
+
+| Bậc | Cách | Kết luận được ghi |
+|---|---|---|
+| 1 | Công cụ điều khiển trình duyệt có trong phiên (ví dụ một MCP điều khiển trình duyệt): mở file, đi trọn từng flow, chụp từng màn, đọc lỗi console | Đã chạy thử |
+| 2 | Script `engine/scripts/prototype-audit.mjs` (cài theo `engine/scripts/README.md`), hoặc trình duyệt trên máy chạy không giao diện: chụp từng màn ở các cỡ màn hình, kiểm cấu trúc và lỗi console | Đã chụp màn; tương tác chưa kiểm |
+| 3 | Không chạy được trình duyệt: kiểm cú pháp JavaScript, kiểm mọi mã màn trong điều hướng có màn tương ứng; nhờ Designer mở file, đi một flow và xác nhận | Chưa chạy thử; ghi vào Limitation, nêu Designer đã xác nhận flow nào |
+
+Không ghi "đã chạy thử" khi chỉ đạt bậc 3.
 - Không trình bày prototype như sản phẩm đã làm xong.

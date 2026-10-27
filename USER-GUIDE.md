@@ -43,7 +43,7 @@ Với công cụ khác Claude Code, agent review độc lập có thể không c
 |---|---|---|
 | Git | Tải repo, làm việc với repo của PO | macOS: chạy `xcode-select --install` và bấm Cài đặt. Windows: tải từ git-scm.com |
 | Claude Code CLI (lệnh `claude` trong terminal) | Thêm kết nối Figma lựa chọn B, C | Theo tài liệu cài đặt của Claude Code |
-| Node.js bản LTS | Lựa chọn C; script kiểm prototype tự động (tuỳ chọn) | Tải từ nodejs.org. Script cài theo `engine/scripts/README.md` |
+| Node.js bản LTS | Lựa chọn C; script kiểm cú pháp sơ đồ và script kiểm prototype tự động (tuỳ chọn) | Tải từ nodejs.org. Script kiểm sơ đồ chạy ngay; script kiểm prototype cài theo `engine/scripts/README.md` |
 
 ### A3. Kết nối Figma
 

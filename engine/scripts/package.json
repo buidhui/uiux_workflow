@@ -4,7 +4,8 @@
   "type": "module",
   "description": "Script hỗ trợ của UIUX-Workflow. Cài một lần: npm --prefix engine/scripts install, sau đó npx --prefix engine/scripts playwright install chromium",
   "scripts": {
-    "prototype-audit": "node prototype-audit.mjs"
+    "prototype-audit": "node prototype-audit.mjs",
+    "mermaid-lint": "node mermaid-lint.mjs"
   },
   "devDependencies": {
     "playwright": "^1.49.0"

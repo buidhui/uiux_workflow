@@ -8,6 +8,8 @@
 
 ## Flow, màn, state
 - [ ] **[BLOCK]** Có sơ đồ Mermaid, nhánh lỗi vẽ cùng
+- [ ] **[BLOCK]** `mermaid-lint.mjs` không báo lỗi; máy không có Node thì đã rà theo bảng ở `diagram-protocol.md` mục 3 và ghi Limitation
+- [ ] Mỗi sơ đồ tối đa 20 nút, có câu mô tả bằng chữ ngay dưới khối
 - [ ] **[BLOCK]** Mỗi màn khai đủ bảy state, mỗi ô có, không kèm lý do, hoặc GAP
 - [ ] **[BLOCK]** Lệnh "sửa tương tự" thành dòng mirror riêng
 - [ ] Màn ngoài yêu cầu gốc đánh dấu chờ Designer quyết định

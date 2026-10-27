@@ -18,7 +18,7 @@ argument-hint: <intent-slug>
 | Archive | yes |
 | Template | `engine/templates/design-strategy.md` · `engine/templates/flow-map.md` |
 | Checklist | `engine/verification/design-strategy.md` |
-| Knowledge | `engine/protocol/design-levels.md` · `engine/knowledge/flow-analysis.md` · `screen-states.md` · `edge-case-sweep.md` · `accessibility.md` · `prototyping.md` (flow prototype) · `data-visualization.md` (màn có biểu đồ) · KB mục 4, 5, 9 |
+| Knowledge | `engine/protocol/design-levels.md` · `engine/protocol/diagram-protocol.md` · `engine/knowledge/flow-analysis.md` · `screen-states.md` · `edge-case-sweep.md` · `accessibility.md` · `prototyping.md` (flow prototype) · `data-visualization.md` (màn có biểu đồ) · KB mục 4, 5, 9 |
 
 Chạy theo `engine/protocol/stage-protocol.md`. Tương ứng Step 2, 3 của hướng dẫn cũ, và stage 2.5 Refined Mockups của AWS AI-DLC ở mức chiến lược (README mục "AWS AI-DLC làm phần thiết kế như thế nào").
 
@@ -26,7 +26,7 @@ Chạy theo `engine/protocol/stage-protocol.md`. Tương ứng Step 2, 3 của h
 Biến PRD thành chiến lược thiết kế đủ để các bên (PO, Dev, QA) đọc và đồng thuận trước khi vẽ: thiết kế những màn nào, theo flow nào, mỗi màn có state nào, trường hợp biên nào, dùng component nào của UI kit, phần nào kit còn thiếu, màn nào cần sáng tạo, và Designer có ý kiến gì về PRD. Chưa vẽ UI.
 
 ## Các bước
-1. Flow: flow chính, phụ, lỗi; sơ đồ Mermaid, mỗi node là một màn có mã, nhãn mũi tên là thao tác người dùng. PRD có vòng đời trạng thái thì màn hiển thị trạng thái phải khớp sơ đồ trạng thái của PRD.
+1. Flow: flow chính, phụ, lỗi; sơ đồ Mermaid theo `diagram-protocol.md`, mỗi node là một màn có mã, nhãn mũi tên là thao tác người dùng. Kiểm cú pháp bằng `node engine/scripts/mermaid-lint.mjs intents/<slug>` trước khi trình gate. PRD có vòng đời trạng thái thì màn hiển thị trạng thái phải khớp sơ đồ trạng thái của PRD.
 2. Màn: danh sách màn mới, sửa, mirror; mỗi màn ghi user story mà nó phục vụ; vị trí trong app; màn hiện có bị ảnh hưởng. Mỗi user story có giao diện trong PRD phải có ít nhất một màn. CR trên màn có sẵn dùng bản kê thay đổi.
 3. State: mỗi màn bảy state theo `screen-states.md`.
 4. Mức thiết kế: mỗi màn L1, L2, L3 và độ phức tạp logic theo `design-levels.md`, kèm lý do, đối chiếu kit usage và gap log của module chứa màn (KB mục 5). Hộp xác nhận, modal, drawer có nội dung riêng được cấp mã SCR riêng, để Story List và QA trỏ tới được.

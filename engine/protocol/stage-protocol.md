@@ -52,7 +52,7 @@ Designer nói tự nhiên, gửi ảnh khoanh vùng, dán link Figma bất kỳ 
 - Viết artifact theo template, giữ đúng heading. Xoá mọi chữ hướng dẫn mẫu. Mục không có nội dung thì bỏ hẳn.
 - Artifact nội bộ (context-overview, flow-map, design-strategy mục 8 trở đi, ux-brief, build-report, design-review, feedback): thẻ nguồn ở mỗi khối khẳng định theo `question-format.md`. Mục Assumptions & Open Questions bắt buộc, không có thì ghi "None".
 - Artifact bàn giao (design-strategy mục 1 đến 7, file thiết kế UX trên repo PO, delivery-summary, prototype, fix-prompt, tin nhắn gửi BA, PO, Dev): không thẻ nguồn, không từ ngữ quy trình, mã kèm nội dung.
-- Flow và quan hệ màn thể hiện bằng sơ đồ (Mermaid trong file), không chỉ bằng bảng.
+- Flow và quan hệ màn thể hiện bằng sơ đồ (Mermaid trong file), không chỉ bằng bảng. Cách vẽ và cách kiểm cú pháp theo `diagram-protocol.md`.
 - Mã ổn định theo `GLOSSARY.md`. Mã đã cấp không đánh lại.
 - Tên file ổn định. Phiên bản và trạng thái ở frontmatter `version`, `status`.
 - Stage ghi vào Figma: theo `figma-protocol.md`, không có ngoại lệ.

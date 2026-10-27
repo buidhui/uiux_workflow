@@ -23,7 +23,7 @@ Chạy và báo bảng Có, Thiếu, Cần cho việc gì:
 |---|---|---|
 | Git | `git --version` | Mọi trường hợp |
 | Claude Code CLI | `claude --version` | Thêm kết nối Figma lựa chọn B, C |
-| Node.js | `node --version` | Lựa chọn C; script kiểm prototype `engine/scripts/` (tuỳ chọn, cài theo `engine/scripts/README.md`) |
+| Node.js | `node --version` | Lựa chọn C; script kiểm cú pháp sơ đồ `engine/scripts/mermaid-lint.mjs` (không cần cài gói); script kiểm prototype `engine/scripts/` (tuỳ chọn, cài theo `engine/scripts/README.md`) |
 
 Thiếu thì đưa cách cài theo `USER-GUIDE.md` mục A2 để Designer tự cài; không chạy lệnh cần quyền quản trị (`sudo`) thay Designer. Phần thiếu không ảnh hưởng tới lựa chọn Designer sẽ dùng thì ghi nhận và đi tiếp.
 

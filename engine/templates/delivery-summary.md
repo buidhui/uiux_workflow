@@ -11,11 +11,12 @@ status: draft
 
 Link Figma cuối: <link>
 Version bàn giao trên Figma: <tên version, ngày lưu>
+File HTML bàn giao (màn chỉ HTML): <đường dẫn> tại commit <mã commit>
 
 ## 2. Màn đã thiết kế
-| Màn | Link frame | Ghi chú bàn giao trên Figma |
-|---|---|---|
-| | | Có · Chưa |
+| Màn | Đầu ra | Link frame hoặc màn trong HTML | Ghi chú bàn giao |
+|---|---|---|---|
+| | Chỉ HTML · Figma + HTML | | Có · Chưa |
 
 ## 3. State từng màn
 | Màn | Default | Empty | Loading | Success | Error | Disabled | Permission |

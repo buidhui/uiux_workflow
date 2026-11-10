@@ -9,3 +9,9 @@
 - [ ] Một file HTML mở được bằng trình duyệt, không cần server, không gọi API thật
 - [ ] **[BLOCK]** Đã kiểm theo bậc ở `prototyping.md` và ghi bậc đã dùng; đạt bậc 1 hoặc 2 thì đã chụp từng màn; điểm lệch với Figma ghi ở `prototype-report.md`; chỉ đạt bậc 3 thì Limitation nêu rõ chưa chạy thử
 - [ ] Có nhãn "Prototype" trên giao diện để không nhầm với sản phẩm thật
+
+## Màn chỉ HTML
+- [ ] **[BLOCK]** Chỉ dùng component trong bảng ánh xạ của KB mục 7; không có phần tử dựng rời, không có số rời ngoài token
+- [ ] **[BLOCK]** Đủ bảy state và các vai, chuyển được bằng bảng điều khiển
+- [ ] **[BLOCK]** Chế độ ghi chú bàn giao có nội dung cho mọi màn chỉ HTML
+- [ ] Đã chạy tự kiểm theo `prototyping.md` mục Màn chỉ HTML, kết quả ghi ở `prototype-report.md`

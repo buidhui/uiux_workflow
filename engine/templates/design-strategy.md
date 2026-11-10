@@ -13,7 +13,7 @@ Mục 1 đến 7 là phần đẩy lên repo của PO ở D3, render theo templa
 ## 1. Danh sách màn
 | SCR | Tên màn | Module | Mới · Sửa · Mirror | User story | Vị trí trong app | Mức thiết kế | Figma |
 |---|---|---|---|---|---|---|---|
-| SCR1 | | <module theo KB mục 5> | | US1 | page · modal · drawer · hộp xác nhận | L1 · L2 · L3 | <điền ở H1, kèm version> |
+| SCR1 | | <module theo KB mục 5> | | US1 | page · modal · drawer · hộp xác nhận | L1 · L2 · L3 | <link Figma kèm version, hoặc link HTML kèm commit; điền ở H1> |
 
 Cột Module chỉ cần khi sản phẩm có nhiều module dùng kit khác nhau; mức thiết kế của màn đối chiếu với kit của đúng module đó.
 
@@ -67,9 +67,11 @@ Component kit chưa có:
 | 1 | SCR1 | | Theo yêu cầu · Assumption · Ngoài yêu cầu gốc · Mức thiết kế · Ý kiến PRD · GAP | ☐ |
 
 ## 9. Đường đi của từng màn
-| SCR | Mức | Logic | UX Brief | UI do ai dựng | Design ref | Review độc lập | Prototype |
+| SCR | Mức | Logic | Đầu ra | UX Brief | UI do ai dựng | Design ref | Review độc lập |
 |---|---|---|---|---|---|---|---|
-| | L1 · L2 · L3 | Thường · Phức tạp | Nén · Đầy đủ | AI · Designer | Không cần · Đã có · Cần có | Tuỳ · Bắt buộc | Có · Không |
+| | L1 · L2 · L3 | Thường · Phức tạp | Chỉ HTML · Figma + HTML | Nén · Đầy đủ | AI · Designer | Không cần · Đã có · Cần có | Tuỳ · Bắt buộc |
+
+Điều kiện làn chỉ HTML của sản phẩm (KB mục 2, 7, 11): <đạt cả ba · thiếu điều kiện nào>.
 
 ## 10. Bản kê thay đổi
 <CR trên màn có sẵn. Một dòng một màn một thay đổi; "sửa tương tự" là dòng mirror riêng.>

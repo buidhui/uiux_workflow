@@ -2,12 +2,16 @@
 intent: <slug>
 artifact: prototype-report
 version: 0.1
-figma_version: <tên version Figma đã lấy>
+figma_version: <tên version Figma đã lấy; ghi "không" khi mọi màn chỉ HTML>
 design_strategy_version: <n>
 ---
 # Prototype: <tên tính năng>
 
 Mở: <đường dẫn `execution/prototype/index.html`, hoặc link nếu đã chia sẻ>
+
+## 0. Đầu ra từng màn
+| SCR | Đầu ra | Tự kiểm màn chỉ HTML (component, token, state, chữ, breakpoint, nhất quán) |
+|---|---|---|
 
 ## 1. Flow bấm được
 | FLOW | Tên | Các màn theo thứ tự | Đi trọn được |

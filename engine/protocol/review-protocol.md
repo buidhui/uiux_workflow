@@ -12,7 +12,7 @@ Review độc lập do agent `ux-lead` làm. Agent không thấy cuộc hội th
 ## Gọi reviewer
 - Dùng Task gọi agent `ux-lead` trong `.claude/agents/`.
 - Truyền đường dẫn, không dán nội dung: command của stage, artifact cần review, artifact đầu vào, `GLOSSARY.md`, file knowledge liên quan, mục Product KB liên quan, file review lần trước nếu có.
-- Design review: AI điều phối đo số liệu trên Figma trước, ghi vào `delivery/review-refine/context.md` (node của từng section, biến đang gán, text style, kích thước, tương phản tính từ giá trị thật), sau đó truyền đường dẫn file này. Agent có quyền đọc Figma (ảnh chụp, metadata, biến) để tự nhìn thiết kế và kiểm lại số đo; không có quyền ghi. Không có số đo do AI điều phối thì agent tự đo, nhưng không được dựa vào nhận xét của AI điều phối về tính thẩm mỹ.
+- Design review: AI điều phối đo số liệu trên Figma trước, ghi vào `delivery/review-refine/context.md` (node của từng section, biến đang gán, text style, kích thước, tương phản tính từ giá trị thật), sau đó truyền đường dẫn file này. Agent có quyền đọc Figma (ảnh chụp, metadata, biến) để tự nhìn thiết kế và kiểm lại số đo; không có quyền ghi. Không có số đo do AI điều phối thì agent tự đo, nhưng không được dựa vào nhận xét của AI điều phối về tính thẩm mỹ. Màn chỉ HTML: `context.md` chứa ảnh chụp từng màn ở các breakpoint, báo cáo `prototype-audit.mjs`, giá trị CSS đã tính của các phần tử được đo; agent đọc file HTML và ảnh chụp, không cần Figma.
 - Không truyền: `memory.md`, bản nháp, lý luận của AI soạn thảo.
 - Nói với Designer một câu: "Để UX Lead xem qua trước khi anh/chị đọc."
 

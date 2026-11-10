@@ -1,52 +1,107 @@
 # UIUX-Workflow
 
-Quy trình cho UI/UX Designer làm việc cùng AI, từ lúc PO có PRD đã duyệt tới lúc bàn giao thiết kế cho Dev. Designer đọc hiểu PRD cùng AI, đưa ra chiến lược thiết kế, đẩy lên repo của PO để các bên đồng thuận, sau đó mới thiết kế trên Figma và làm prototype HTML tương tác. AI đọc, phân tích, dựng, đo và soạn tài liệu; Designer quyết định ở các gate.
+UIUX-Workflow là quy trình thiết kế dành cho UI/UX Designer làm việc cùng AI. Quy trình bắt đầu khi PRD của PO đã được duyệt và kết thúc khi thiết kế được bàn giao cho Dev. Designer cùng AI đọc hiểu PRD, xây dựng chiến lược thiết kế, đưa chiến lược lên repo của PO để các bên đồng thuận, sau đó mới thiết kế bằng UI kit của sản phẩm và dựng prototype HTML thao tác được. AI đảm nhận việc đọc tài liệu, phân tích, dựng giao diện, đo kiểm và soạn tài liệu; Designer ra quyết định và phê duyệt ở cuối mỗi stage.
 
-Repo kế thừa hướng dẫn cũ của team (`User Guide_UI-UX- Workflow w AI.md`), tham khảo khung engine và domain của PO-Workflow, và đối chiếu với phần thiết kế của AWS AI-DLC.
+Mọi quyết định, câu trả lời và bản đã duyệt được lưu trong repo git của sản phẩm. Phần quy trình dùng chung (engine) tách khỏi knowledge base của từng sản phẩm (Product KB), nên một bản engine dùng được cho nhiều sản phẩm.
 
-Trạng thái: engine v0.9, chưa gắn sản phẩm nào. Kiến thức nghề trong `engine/knowledge/` đã viết đủ mười một file; thang chấm review chưa hiệu chỉnh. Product KB được định nghĩa ở [DOMAIN-SETUP.md](DOMAIN-SETUP.md), điền khi chạy thật.
-
-## Cài đặt
-
-1. Cài Claude Code và đăng nhập (tiện ích trong VS Code, ứng dụng desktop, hoặc terminal).
-2. Mở Claude Code ở thư mục bất kỳ, gửi: `Cài đặt UIUX-Workflow từ https://github.com/buidhui/uiux-workflow`. Sản phẩm đã có repo UIUX-Workflow riêng thì gửi link repo đó.
-
-AI tải repo và hướng dẫn từng bước: kết nối Figma, nối repo của PO, kiểm tra. Các việc cần Designer tự thao tác (đăng nhập, bật tuỳ chọn trong Figma, xin quyền) và cách cài tay ở [USER-GUIDE.md](USER-GUIDE.md) Phần A.
-
-Dành cho AI nhận yêu cầu cài đặt: tải repo về thư mục Designer chọn, đọc `engine/commands/setup.md` và làm theo từ bước 0.
-
-## Tài liệu theo người đọc
-
-| Tài liệu | Dành cho | Nội dung |
+| Tài liệu | Người đọc | Nội dung |
 |---|---|---|
-| [USER-GUIDE.md](USER-GUIDE.md) | Designer | Phần A: cài đặt, bốn cách kết nối Figma, repo của PO, repo sản phẩm. Phần B: từng bước một việc từ PRD tới bàn giao, tình huống ngoài luồng chuẩn |
-| [DOMAIN-SETUP.md](DOMAIN-SETUP.md) | Người dựng Product KB | Mười một mục của Product KB, mức Tối thiểu và Hiệu quả |
-| [GLOSSARY.md](GLOSSARY.md) | Mọi người | Thuật ngữ của quy trình |
-| [AGENTS.md](AGENTS.md) | Mọi công cụ AI (Claude Code đọc qua `CLAUDE.md`) | Luật vận hành, cấu trúc chung và riêng, định tuyến lời nói, cách dùng với công cụ khác Claude Code |
+| README.md | Mọi người | Giới thiệu quy trình: phạm vi, nguyên lý, stage, mức thiết kế, kiểm tra chất lượng, cơ sở phương pháp |
+| [USER-GUIDE.md](USER-GUIDE.md) | Designer | Phần A: cài đặt, cách kết nối Figma, repo của PO. Phần B: từng bước một việc từ PRD tới bàn giao |
+| [DOMAIN-SETUP.md](DOMAIN-SETUP.md) | Người phụ trách quy trình | Mười một mục của Product KB, cách đưa một sản phẩm vào quy trình |
+| [GLOSSARY.md](GLOSSARY.md) | Mọi người | Thuật ngữ và họ mã |
+| [AGENTS.md](AGENTS.md) | Công cụ AI | Quy tắc AI phải tuân thủ; `CLAUDE.md` chỉ nạp lại file này |
+| [CHANGELOG.md](CHANGELOG.md) | Người phụ trách quy trình | Thay đổi của từng phiên bản, cách nâng cấp, việc còn mở |
 
-Engine không phụ thuộc công cụ: chạy được với bốn cách kết nối Figma (kể cả không kết nối), với repo PO có quyền push, chỉ đọc, hoặc không có repo, và với công cụ AI khác Claude Code. Phần việc AI không làm được với một lựa chọn có cách thay thế ghi ở `USER-GUIDE.md` mục A3.
+## Mục lục
 
-## Mục tiêu theo thứ tự
+1. [Tổng quan](#1-tổng-quan)
+2. [Nguyên lý nền](#2-nguyên-lý-nền)
+3. [Quy trình](#3-quy-trình)
+4. [Từng stage](#4-từng-stage)
+5. [Kiểm tra chất lượng](#5-kiểm-tra-chất-lượng)
+6. [Kết nối với PO-Workflow và AI-DLC](#6-kết-nối-với-po-workflow-và-ai-dlc)
+7. [Cài đặt, cấu trúc repo và nâng cấp](#7-cài-đặt-cấu-trúc-repo-và-nâng-cấp)
+8. [Cơ sở phương pháp](#8-cơ-sở-phương-pháp)
 
-1. Theo SDLC hiện tại: đọc hiểu PRD của PO, đưa ra chiến lược thiết kế, đồng thuận với các bên.
-2. Thiết kế trực tiếp lên Figma theo chiến lược đã đồng thuận, bằng UI kit của sản phẩm.
-3. Đầu ra gồm thiết kế trên Figma và prototype HTML để thao tác thử luồng và state.
-4. Sau đó: chạy theo AI-DLC (mục "Lộ trình AI-DLC").
+## 1. Tổng quan
 
-UI kit của sản phẩm do người phụ trách kit dựng. Luồng này không dựng kit; gặp phần tử kit chưa có thì đề xuất bổ sung bằng `/kit-proposal`.
+### 1.1 Phạm vi
 
-## Nguyên tắc nền
+Mỗi yêu cầu thiết kế là một intent, lưu tại `intents/<slug>/`. Intent đi qua tám stage thuộc ba phase: Discovery & Strategy hiểu yêu cầu và thống nhất chiến lược thiết kế; Design Execution dựng giao diện và prototype; Review, Refine & Deliver rà soát, xử lý góp ý và bàn giao. Độ sâu của từng bước được quyết định theo từng màn, dựa trên mức thiết kế của màn đó.
 
-1. AI làm nhanh, Designer kiểm soát đúng. Không bỏ qua checkpoint, không bàn giao khi chưa đủ màn, state, checklist.
-2. Hiểu trước, đồng thuận trước, vẽ sau. Chỉ vẽ lên Figma khi chiến lược đã được các bên đồng thuận.
-3. Không phân tích lại nghiệp vụ, không sửa PRD. Khác biệt ghi thành ý kiến về PRD; điểm chưa rõ hỏi PO.
-4. Bên ngoài chỉ tham gia ở cấp chiến lược (Alignment). Phần chi tiết do Designer quyết định; PO muốn xem thiết kế cuối thì xem trên Figma và prototype.
-5. Độ sâu theo độ khó của từng màn: có sẵn component, cần mở rộng, hoặc cần sáng tạo.
-6. Dùng những gì đã có: component của UI kit, pattern của app. Khi kit thiếu một phần tử, AI viết đề xuất bổ sung; AI không tự vẽ component.
-7. AI không sửa thiết kế chính: chỉ ghi vào khu vực nháp, sau khi lưu version.
-8. Kết quả phải đo được mới được xem là xong.
+| Áp dụng cho | Không áp dụng cho |
+|---|---|
+| Tính năng mới hoặc thay đổi có giao diện, sau khi PRD được duyệt | Phân tích nghiệp vụ, viết PRD: việc của PO |
+| Từ đọc PRD tới bàn giao thiết kế cho Dev | Dựng UI kit, design system: việc của người phụ trách kit |
+| Thiết kế bằng UI kit có sẵn trên Figma, prototype HTML, thiết kế bằng HTML cho màn đơn giản | Thiết kế API, dữ liệu, chọn thư viện code: việc của Dev |
+| Thay đổi sau khi chiến lược đã đồng thuận; góp ý của Dev sau bàn giao | Viết test case: việc của QA |
+| Rà soát màn đang chạy, không cần intent | Quản lý tiến độ thay cho công cụ quản lý task |
 
-## Bức tranh chung
+Điều kiện bắt đầu: PRD đã được duyệt; sản phẩm có Product KB ở mức Tối thiểu theo [DOMAIN-SETUP.md](DOMAIN-SETUP.md). Khi Product KB chưa đủ, lệnh tạo intent hỏi bù sáu thông tin tối thiểu ở lần đầu.
+
+### 1.2 Vai trò
+
+| Vai | Trách nhiệm |
+|---|---|
+| AI | Đọc PRD và Product KB trước khi hỏi; phân tích flow, màn, state, trường hợp biên; đề xuất mức thiết kế; dựng giao diện bằng instance của UI kit hoặc bằng HTML; dựng prototype; đo và tự kiểm; soạn file thiết kế UX, ghi chú bàn giao; đánh dấu `❓PO`, `❓Designer` ở phần chưa rõ thay vì suy đoán |
+| Designer | Phê duyệt hoặc yêu cầu sửa ở mỗi gate; quyết định mức thiết kế, đầu ra của màn, hướng thị giác, phương án; tự dựng giao diện cho màn cần sáng tạo hoặc khi muốn; xử lý góp ý |
+| UX Lead | Agent review độc lập, chỉ đọc thiết kế và tài liệu được giao, không tiếp cận hội thoại giữa Designer và AI; chấm điểm theo bảy trục và kết luận verdict |
+| PO | Cung cấp PRD đã duyệt; trả lời câu hỏi; cùng các bên đồng thuận chiến lược thiết kế ở D3. PO không duyệt chi tiết thiết kế; muốn xem bản cuối thì xem trên Figma và prototype |
+| BA, Dev, QA | Trả lời câu hỏi; góp ý ở R1; Dev nêu ý kiến về khả năng làm; nhận bàn giao |
+| Người phụ trách kit | Nhận đề xuất bổ sung component, quyết định việc dựng vào UI kit |
+| Người phụ trách quy trình | Duy trì engine và Product KB, tổng hợp bài học |
+
+### 1.3 Đầu ra bàn giao
+
+| Đầu ra | Người nhận | Thời điểm |
+|---|---|---|
+| Chiến lược thiết kế, đưa vào file thiết kế UX trên repo của PO | PO, Dev, QA | D3; cập nhật link ở H1 |
+| Thiết kế trên Figma, ghim version bàn giao | Dev, QA | H1; cho màn đi Figma + HTML |
+| File HTML: prototype của mọi màn, đồng thời là thiết kế chính của màn chỉ HTML, ghim theo commit | PO, Dev, QA | E3; ghim ở H1 |
+| `delivery-summary.md`: mục lục bàn giao và checklist cho Dev | Dev | H1 |
+| Đề xuất bổ sung UI kit, ghi trong gap log | Người phụ trách kit | Khi gặp phần tử kit chưa có |
+
+### 1.4 Đặc điểm chính
+
+| Đặc điểm | Cơ chế |
+|---|---|
+| Thống nhất chiến lược trước khi vẽ | D3 đưa chiến lược lên repo của PO; giao diện chỉ được dựng sau khi Alignment Gate qua |
+| Độ sâu theo từng màn | Mức L1, L2, L3 kết hợp độ phức tạp logic quyết định UX Brief, review và đầu ra của màn |
+| Đầu ra gọn cho màn đơn giản | Màn chỉ ghép component có sẵn được thiết kế và bàn giao bằng HTML, không qua Figma, khi sản phẩm đủ điều kiện |
+| Dùng đúng UI kit của sản phẩm | Giao diện dựng bằng instance của kit; phần tử kit chưa có được ghi `GAP` và đề xuất qua `/kit-proposal`, không tự vẽ |
+| An toàn với file Figma | AI chỉ ghi vào khu vực nháp, lưu version có tên trước mỗi lần ghi |
+| Quyết định được lưu vết | Lời duyệt và câu trả lời ghi nguyên văn trong `decisions.md`; bản đã duyệt chụp vào `archive/` |
+| Chất lượng đo được | Checklist có mục chặn, review độc lập, script kiểm sơ đồ và prototype; không báo xong khi chưa đo |
+| Dùng chung cho nhiều sản phẩm và công cụ | Engine tách khỏi Product KB; bốn cách kết nối Figma; chạy được với công cụ AI khác qua `AGENTS.md`; cài từ link repo bằng `/setup` |
+
+### 1.5 Khác biệt so với thiết kế trực tiếp bằng AI hội thoại
+
+| Khía cạnh | Dùng trực tiếp AI hội thoại | UIUX-Workflow |
+|---|---|---|
+| Hiểu yêu cầu | AI suy luận từ đoạn mô tả được dán vào | AI đọc PRD và Product KB, tách Confirmed, Assumption, Open question; điểm chưa rõ thành câu hỏi cho PO |
+| Thông tin còn thiếu | AI tự bổ sung | AI đánh dấu `❓PO` hoặc dừng ở câu hỏi chặn |
+| Bám design system | AI tự chọn màu, chữ, component | Chỉ dùng component và token của UI kit; phần thiếu ghi `GAP` |
+| State và trường hợp biên | Phụ thuộc người hỏi có nhớ hay không | Bảy state cho mỗi màn, rà trường hợp biên theo danh mục, độ sâu theo mức của màn |
+| Kiểm soát chất lượng | Designer tự rà bằng mắt | Checklist, review độc lập theo thang điểm, script kiểm, chuẩn WCAG 2.2 mức AA |
+| Lưu vết và bàn giao | Phân tán trong lịch sử hội thoại | Quyết định ghi nguyên văn; link bàn giao ghim version Figma hoặc commit HTML |
+
+## 2. Nguyên lý nền
+
+| Nguyên lý | Áp dụng trong quy trình |
+|---|---|
+| AI làm, Designer kiểm soát | Gate cuối mỗi stage; AI không tự quyết định thay Designer, chỉ đề xuất dưới nhãn Recommendation |
+| Hiểu trước, đồng thuận trước, vẽ sau | D1, D2 trước khi dựng; D3 chờ các bên đồng thuận; giao diện chỉ dựng sau Alignment Gate |
+| Không phân tích lại nghiệp vụ | PRD là đầu vào; khác biệt ghi thành Ý kiến về PRD với lập trường và lý do; không sửa PRD |
+| Bên ngoài tham gia ở cấp chiến lược | Các bên đồng thuận ở D3; chi tiết thiết kế do Designer quyết định |
+| Độ sâu theo độ khó của từng màn | Mức thiết kế L1, L2, L3 và độ phức tạp logic; đầu ra theo mức |
+| Dùng những gì đã có | Component của UI kit, pattern của màn liền kề; phần thiếu chỉ đề xuất bổ sung kit |
+| Không sửa thiết kế chính | Khu vực nháp trên Figma, lưu version trước khi ghi |
+| Kết quả phải đo được | Số đo, ảnh chụp, checklist; điều chưa kiểm được ghi vào mục Limitation |
+
+## 3. Quy trình
+
+### 3.1 Sơ đồ
 
 ```mermaid
 flowchart LR
@@ -63,86 +118,86 @@ flowchart LR
     R1[R1 Review & Refine] --> H1[H1 Handoff & Done]
   end
   D3 --> E1
-  D3 -->|mọi màn L1| E2
+  D3 -->|màn L1 Figma + HTML| E2
+  D3 -->|màn L1 chỉ HTML| E3
   E3 --> R1
   E2 -.->|kit thiếu| KP[kit-proposal]
-  H1 -->|cập nhật link Figma, prototype| PO
+  H1 -->|cập nhật link Figma, HTML| PO
 ```
+
+### 3.2 Các stage
 
 | Phase | Stage | Mục đích | Đầu ra | Gate |
 |---|---|---|---|---|
-| Discovery & Strategy | D1 Context Overview | Đọc hiểu PRD và bối cảnh; user task; câu hỏi | `context-overview.md` | Context checkpoint |
-| | D2 Design Strategy | Flow, màn, bảy state, trường hợp biên, mức từng màn, ánh xạ UI kit, accessibility, ý kiến về PRD; flow prototype khi cần | `design-strategy.md`, `flow-map.md`, `flow-prototype.html` | Strategy Gate |
-| | D3 Alignment | Đẩy chiến lược lên repo PO theo template của họ; chờ các bên đồng thuận; đồng bộ thay đổi | File thiết kế UX trên repo PO | Alignment Gate |
-| Design Execution | E1 UX Brief & Wireframe | Màn L2: đề xuất component; màn L3: design ref, chọn hướng; bố cục, nội dung chữ | `ux-brief.md` | UX Brief Gate |
-| | E2 UI Design | UI trên Figma bằng instance của UI kit, trong khu vực nháp; tự kiểm | Frame Figma, `build-report.md` | Không, sang E3 |
-| | E3 Prototype | Prototype HTML thao tác được trọn luồng, đổi state, đổi vai | `index.html`, `prototype-report.md` | Không, sang R1 |
-| Review, Refine & Deliver | R1 Review & Refine | Review độc lập; góp ý của BA, Dev; Dev feasibility; sửa Figma và prototype | `feedback.md`, `design-review.md` | UI Gate |
-| | H1 Handoff & Done | Ghi chú bàn giao trên Figma; cập nhật file thiết kế UX trên repo PO; delivery summary | `delivery-summary.md` | Delivery Gate |
+| Discovery & Strategy | D1 Context Overview | Đọc hiểu PRD và bối cảnh; user task; câu hỏi cho PO | `context-overview.md` | Context checkpoint |
+| | D2 Design Strategy | Flow, màn, bảy state, trường hợp biên, mức và đầu ra của từng màn, ánh xạ UI kit, accessibility, ý kiến về PRD; flow prototype khi cần | `design-strategy.md`, `flow-map.md` | Strategy Gate |
+| | D3 Alignment | Đưa chiến lược lên repo của PO theo template của PO; chờ các bên đồng thuận | File thiết kế UX trên repo PO | Alignment Gate |
+| Design Execution | E1 UX Brief | Màn L2: đề xuất component; màn L3: design ref, chọn hướng thị giác; bố cục, nội dung chữ. Màn L1 nén vào D2 | `ux-brief.md` | UX Brief Gate |
+| | E2 UI Design | Giao diện trên Figma bằng instance của UI kit, trong khu vực nháp; tự kiểm. Chỉ cho màn Figma + HTML | Frame Figma, `build-report.md` | Không, sang E3 |
+| | E3 Prototype | HTML thao tác được trọn luồng, đổi state, đổi vai. Màn chỉ HTML: HTML là thiết kế chính, có chế độ ghi chú bàn giao | `index.html`, `prototype-report.md` | Không, sang R1 |
+| Review, Refine & Deliver | R1 Review & Refine | Review độc lập; góp ý của BA, Dev; xử lý khả năng làm với Dev; sửa thiết kế | `feedback.md`, `design-review.md` | UI Gate |
+| | H1 Handoff & Done | Ghi chú bàn giao; ghim version; cập nhật file thiết kế UX trên repo PO | `delivery-summary.md` | Delivery Gate |
 
-## Ghép với PO-Workflow
+### 3.3 Mức thiết kế và đầu ra của màn
 
-| PO-Workflow | UIUX-Workflow |
+Mỗi màn được gán một mức thiết kế ở D2, Designer duyệt ở Strategy Gate. Mức quyết định UX Brief, người dựng giao diện và việc màn có cần Figma hay không.
+
+| Mức | Màn như thế nào | Đầu ra | Đi thêm gì |
+|---|---|---|---|
+| L1 Có sẵn | Ghép từ component đã có: form, bảng, CRUD, màn quản trị, vận hành nội bộ; thay đổi ở luồng, trạng thái, field, câu chữ | Chỉ HTML, khi sản phẩm đạt ba điều kiện dưới đây; nếu không thì Figma + HTML | UX Brief nén vào chiến lược; AI dựng giao diện |
+| L2 Mở rộng | Có component hoặc pattern chưa có trong design system | Figma + HTML | UX Brief có wireframe và đề xuất component; `/kit-proposal` |
+| L3 Sáng tạo | Hình ảnh, thương hiệu, màn cho khách hàng cần chỉnh tới từng pixel, motion, landing | Figma + HTML | Design ref bắt buộc; chọn một trong hai đến ba hướng thị giác; Designer dẫn phần giao diện |
+
+Ba điều kiện để màn L1 đi làn chỉ HTML, khai một lần trong Product KB:
+
+| Điều kiện | Mục Product KB |
 |---|---|
-| 2.42 PRD được duyệt | `/new-intent`, D1 đọc PRD |
-| 2.43 Design Alignment: PO tạo khung `inception/ux-design/ux-design.md` và giao Design PIC | D2 viết chiến lược; D3 render vào file đó, commit `design(<intent>): ux` |
-| Decision Brief, các PIC ký | Alignment Gate chờ kết quả này |
-| Story List lấy mã màn từ `ux-design.md` | H1 cập nhật cột Figma, link prototype trong `ux-design.md` |
-| Thay đổi yêu cầu đi change request trên PRD | `/change-request` của UIUX, chạy lại D3 cho phần đổi |
+| Dev nhận bàn giao bằng HTML, không cần Dev Mode hoặc Code Connect của Figma | Mục 11 |
+| Có thư viện component frontend tải được trong một file HTML, kèm bảng ánh xạ component kit sang code | Mục 7 |
+| Người duyệt chấp nhận xem thiết kế trên trình duyệt | Mục 2 |
 
-Đường dẫn, template và quy ước cụ thể nằm ở Product KB mục 2, không ghi cứng trong engine.
+Màn đã có trên Figma mà được sửa bằng HTML thì H1 cập nhật lại màn đó trên Figma, để file Figma không cũ dần. Trục thứ hai là độ phức tạp logic (thường hoặc phức tạp), quyết định độ sâu rà trường hợp biên, đặc tả hành vi và việc review độc lập có bắt buộc hay không. Chi tiết ở `engine/protocol/design-levels.md`.
 
-## Mức thiết kế quyết định độ sâu
+### 3.4 Đường đi của một intent
 
-| Mức | Màn như thế nào | Đi thêm gì |
-|---|---|---|
-| L1 Có sẵn | Ghép từ component và pattern đã có | UX Brief nén vào chiến lược; AI dựng UI được |
-| L2 Mở rộng | Thiếu component hoặc pattern | UX Brief có wireframe, đề xuất component, `/kit-proposal` |
-| L3 Sáng tạo | Cần hướng thị giác hoặc trải nghiệm mới | Design ref bắt buộc, chọn một trong hai đến ba hướng, Designer dẫn UI |
+| Tình huống | Số gate |
+|---|---|
+| Thay đổi trên màn có sẵn, mọi màn L1, logic thường | 4: D1 chạy liền D2 nên Context checkpoint gộp vào Strategy Gate; làn chỉ HTML không có E2 |
+| Mọi màn L1, có flow mới hoặc màn logic phức tạp | 5 |
+| Có ít nhất một màn L2 hoặc L3 | 6, thêm UX Brief Gate |
 
-Trục thứ hai là độ phức tạp logic. Chi tiết ở `engine/protocol/design-levels.md`. Số gate: CR màn có sẵn 4; có flow mới, mọi màn L1 là 5; có màn L2, L3 là 6.
+Alignment Gate chờ các bên bên ngoài, thường là điểm dài nhất về thời gian; Designer làm việc khác trong lúc chờ. Dev Feasibility Gate chỉ mở khi Dev có ý kiến về khả năng làm.
 
-## Prototype: HTML là đầu ra chính, Figma prototype là phụ
+### 3.5 Gate và phản hồi
 
-| | HTML | Figma prototype |
-|---|---|---|
-| Đổi state, đổi vai, dữ liệu rỗng hoặc lỗi | Có, bằng bảng điều khiển | Mỗi state một frame, nối tay |
-| Logic theo rule (validate, rẽ nhánh) | Có | Rất hạn chế |
-| Giống sản phẩm thật | Cao khi dùng đúng thư viện component frontend (Product KB mục 7) | Giống thiết kế, không giống hành vi |
-| AI kiểm được | Chạy và chụp màn hình được | Ghi được tương tác, không chạy thử được |
-| Rủi ro | Lệch với Figma nếu sửa một bên | Ít lệch |
+Mỗi gate trình bảng kết quả bằng số, đường dẫn để mở, và bốn lựa chọn phản hồi theo hướng dẫn trước đây của team:
 
-Quyết định: E3 sinh prototype HTML một file từ frame Figma đã dựng, dùng thư viện component của frontend thật khi Product KB có, kèm bảng điều khiển vai, dữ liệu, state. Figma prototype chỉ nối điều hướng giữa frame theo flow chính khi Designer muốn trình bày trong Figma. Ngoài ra D2 có thể sinh flow prototype khung xám để các bên thao tác thử luồng trước buổi đồng thuận, với flow mới phức tạp. Chuẩn ở `engine/knowledge/prototyping.md`.
+| Phản hồi | Hệ quả |
+|---|---|
+| Approved | Ghi quyết định nguyên văn, chụp bản duyệt vào `archive/`, sang stage kế; AI đề xuất commit |
+| Approved with Notes | Như Approved; ghi chú được đưa vào bước đầu của stage sau |
+| Need Revision | Sửa đúng phần được nêu, chạy lại review nếu artifact đổi, trình lại |
+| Blocked | Tạm dừng, soạn sẵn câu hỏi cho PO, BA, Dev; tiếp tục khi có câu trả lời |
 
-## AWS AI-DLC làm phần thiết kế như thế nào
+Từ lần Need Revision thứ ba, AI đề xuất Approved with Notes kèm điều kiện cụ thể để tránh lặp vô hạn; Designer vẫn quyết định.
 
-Đối chiếu bản `awslabs/aidlc-workflows` đọc ngày 22/10/2026.
+## 4. Từng stage
 
-| | AWS AI-DLC | UIUX-Workflow |
-|---|---|---|
-| Ai làm | Design Agent (`aidlc-design-agent`): wireframe, interaction design, accessibility, design system compliance | Designer cùng AI |
-| Khi nào | 1.6 Rough Mockups ở Ideation, sau Scope Definition: wireframe khung, user flow, IA, ghi chú accessibility mỗi màn. 2.5 Refined Mockups ở Inception, sau User Stories, trước Domain Design: mockup mid đến high fidelity theo từng story, interaction spec, design system mapping, responsive, accessibility checklist | Sau khi PRD được duyệt: D2 chiến lược, D3 đồng thuận, sau đó E1 đến H1 |
-| Đầu ra | Toàn bộ là Markdown: `wireframes.md`, `user-flow.md`, `mockups.md`, `interaction-spec.md`, `design-system-mapping.md`, `accessibility-checklist.md`. Không có Figma, không có HTML | Chiến lược Markdown, UI trên Figma, prototype HTML |
-| Duyệt | Product Lead review mang tính tham vấn, tối đa hai vòng; người duyệt ở gate | Strategy Gate do Designer; Alignment Gate do các bên; review độc lập ở R1 |
-| Thiết kế và kỹ thuật | 2.6 Domain Design cần 2.5 xong trước: thiết kế đi trước thiết kế kỹ thuật | PO-Workflow cho ba team thiết kế song song từ PRD, gặp nhau ở Decision Brief |
-| Chuẩn | WCAG 2.1 AA, vùng chạm 44 px, Nielsen 10, mẫu component spec | Dùng cùng các chuẩn; ngưỡng vùng chạm theo Product KB mục 9 |
+D1 Context Overview: AI đọc PRD và tài liệu của PO, tóm tắt tính năng, vai, việc người dùng làm trên giao diện, phần wireframe của PO đã quyết định, ước tính các màn và mức của từng màn, câu hỏi cho PO kèm tin nhắn soạn sẵn.
 
-`design-strategy.md` mục 1 đến 4 đã đặt theo bốn artifact của 2.5 Refined Mockups để sau này chuyển sang AI-DLC ít phải đổi.
+D2 Design Strategy: AI lập sơ đồ flow (Mermaid, đã kiểm cú pháp), danh sách màn gắn user story, bảy state cho mỗi màn, trường hợp biên theo mức Must, Should, Optional, mức và đầu ra của từng màn, ánh xạ vùng màn hình sang component của kit, điểm lưu ý về accessibility, ý kiến về PRD. Với flow mới phức tạp, AI dựng thêm flow prototype khung xám để các bên thao tác thử trước buổi đồng thuận.
 
-## Lộ trình AI-DLC
+D3 Alignment: AI đưa các mục chiến lược mà các bên cần đọc vào file thiết kế UX trên repo của PO, theo template của PO. Repo chỉ đọc hoặc không có repo: AI xuất file để Designer gửi. AI đọc kết quả đồng thuận, sửa chiến lược khi có quyết định đổi.
 
-Giai đoạn hiện tại theo SDLC: thiết kế bắt đầu từ PRD đã duyệt. Khi chuyển sang AI-DLC, thiết kế vào sớm hơn:
+E1 UX Brief: màn L2 có đề xuất component mới dựa trên style hiện có để Designer chọn; màn L3 có phân tích design ref, hai đến ba hướng thị giác và reference lock. Mọi màn có thứ bậc thông tin, wireframe dạng khối, nội dung chữ thật, tương tác và state.
 
-| AI-DLC | Việc của UIUX-Workflow | Ghi chú |
-|---|---|---|
-| 1.6 Rough Mockups, sau Scope Definition | Stage mới: wireframe khung và user flow từ intent và scope, trước khi có PRD; dùng lại flow prototype | Cần PO-Workflow chạy 1.6 hoặc mời Designer vào Ideation |
-| 2.4 User Stories | Designer góp ý story ở mức giao diện | AWS chỉ bật chế độ cộng tác này ở scope enterprise |
-| 2.5 Refined Mockups | D2 và D3 hiện tại, đầu vào đổi từ PRD sang user stories và requirements | Bốn mục đầu của chiến lược đã khớp artifact của AWS |
-| Construction | E2, E3, R1, H1 hiện tại | Prototype HTML là phần thêm của UIUX-Workflow |
+E2 UI Design: với màn Figma + HTML, AI lưu version, dựng trong khu vực nháp bằng instance của kit, chia đợt với màn lớn, tự kiểm chín tiêu chí bằng số đo. Màn L3 do Designer dẫn.
 
-Trước khi đặt tên stage cho giai đoạn này, tra lại glossary và định nghĩa stage của AWS bản mới nhất, như PO-Workflow đã làm; không tự đặt thuật ngữ AWS.
+E3 Prototype: một file HTML, mở bằng trình duyệt, có bảng điều khiển đổi vai, đổi bộ dữ liệu, ép state. Màn Figma + HTML lấy cấu trúc từ frame Figma; màn chỉ HTML dựng trực tiếp bằng component của frontend theo bảng ánh xạ, có chế độ ghi chú bàn giao. Kiểm theo ba bậc, từ chạy thật trên trình duyệt tới Designer tự xác nhận.
 
-## Lệnh
+R1 Review & Refine: vòng 1, agent UX Lead review độc lập và chấm điểm; vòng 2, góp ý của BA, Dev, Reviewer được gom vào feedback matrix. Ý kiến của Dev về khả năng làm mở Dev Feasibility Gate với hai đến ba phương án kèm trade-off.
+
+H1 Handoff & Done: ghi chú bàn giao trên Figma hoặc trong file HTML; lưu version Figma và commit file HTML để ghim link; cập nhật file thiết kế UX trên repo PO; soạn `delivery-summary.md` và nội dung chuyển task sang Done. Kết thúc intent bằng một lượt hỏi bài học cần lưu.
 
 Designer không cần nhớ lệnh: nói tự nhiên, AI định tuyến theo bảng trong `AGENTS.md`.
 
@@ -153,78 +208,107 @@ Designer không cần nhớ lệnh: nói tự nhiên, AI định tuyến theo b�
 | `/ux` | Làm bước kế tiếp hoặc tiếp tục phần chưa hoàn tất |
 | `/ux-status` | Trạng thái các việc, kiểm lệch với repo PO và Figma |
 | `/ux-review` | Review độc lập chiến lược, hoặc `--shadow` cho màn đang chạy |
-| `/change-request` | Chiến lược đã đồng thuận phải đổi |
+| `/change-request` | Đổi chiến lược đã đồng thuận |
 | `/kit-proposal` | Đề xuất bổ sung component vào UI kit; chỉ đề xuất, không dựng |
 | `/ds-lookup` | Tra luật design system và cách dùng kit |
-| `/new-domain` | Dựng Product KB |
+| `/new-domain` | Dựng Product KB cho một sản phẩm |
 
-## Engine và Product KB
+## 5. Kiểm tra chất lượng
 
-Engine không chứa dữ kiện sản phẩm. Repo chia ba phần, theo cùng cơ chế với PO-Workflow:
+| Lớp kiểm | Cơ chế |
+|---|---|
+| Checklist từng stage | Mục `[BLOCK]` chặn gate cho tới khi đạt |
+| Tự kiểm giao diện | Chín tiêu chí trên Figma ở E2 (độ phủ, biến, instance, chữ, icon, mode và breakpoint, accessibility, bố cục, nhất quán); bộ tự kiểm riêng cho màn chỉ HTML ở E3 |
+| Review độc lập | Agent UX Lead không thấy hội thoại thiết kế; chấm bảy trục (Requirement fit, Flow và IA, Heuristic, Visual hierarchy, Consistency, Accessibility, Responsive và nội dung); bắt buộc cho màn L2, L3 và màn logic phức tạp |
+| Script | `mermaid-lint.mjs` kiểm cú pháp sơ đồ ở D2; `prototype-audit.mjs` kiểm prototype theo từng màn ở nhiều cỡ màn hình |
+| Accessibility | WCAG 2.2 mức AA: tương phản, vùng chạm, focus, tên trợ năng, không chỉ dựa vào màu; ngưỡng riêng của sản phẩm khai ở Product KB mục 9 |
+| An toàn file thiết kế | Đọc trước, ghi sau; chỉ ghi vào khu vực nháp; lưu version trước khi ghi |
+| Trung thực về mức đã kiểm | Không báo xong khi chưa đo hoặc chưa chụp; không ghi "đã chạy thử" khi chưa chạy được trên trình duyệt; phần chưa kiểm ghi vào Limitation |
+
+Kiến thức nghề dùng khi làm và khi kiểm nằm ở `engine/knowledge/`: đọc yêu cầu, phân tích flow, rà trường hợp biên, bảy state, UX writing tiếng Việt, design ref, trực quan hoá dữ liệu, prototype, heuristic, accessibility, thang chấm review.
+
+## 6. Kết nối với PO-Workflow và AI-DLC
+
+### 6.1 PO-Workflow
+
+| PO-Workflow | UIUX-Workflow |
+|---|---|
+| 2.42 PRD được duyệt | `/new-intent`, D1 đọc PRD |
+| 2.43 Design Alignment: PO tạo khung file thiết kế UX và giao Design PIC | D2 viết chiến lược; D3 đưa vào file đó |
+| Decision Brief, các PIC duyệt | Alignment Gate chờ kết quả này |
+| Story List lấy mã màn từ file thiết kế UX | H1 cập nhật link Figma, link HTML trong file đó |
+| Thay đổi yêu cầu đi change request trên PRD | `/change-request` của UIUX, chạy lại D3 cho phần đổi |
+
+Đường dẫn, template và quy ước cụ thể nằm ở Product KB mục 2, không ghi cứng trong engine. Sơ đồ trong file thiết kế UX qua được `mermaid-lint.mjs` thì cũng qua được bước kiểm sơ đồ của PO-Workflow.
+
+### 6.2 Đối chiếu với AWS AI-DLC
+
+| | AWS AI-DLC | UIUX-Workflow |
+|---|---|---|
+| Người làm | Design Agent: wireframe, interaction design, accessibility, design system compliance | Designer cùng AI |
+| Thời điểm | 1.6 Rough Mockups ở Ideation; 2.5 Refined Mockups ở Inception, sau User Stories, trước Domain Design | Sau khi PRD được duyệt: D2 chiến lược, D3 đồng thuận, sau đó E1 đến H1 |
+| Đầu ra | Toàn bộ là Markdown: wireframes, user flow, mockups, interaction spec, design system mapping, accessibility checklist | Chiến lược Markdown, giao diện trên Figma hoặc HTML, prototype HTML |
+| Duyệt | Product Lead review mang tính tham vấn; người duyệt ở gate | Strategy Gate do Designer; Alignment Gate do các bên; review độc lập ở R1 |
+
+Mục 1 đến 4 của `design-strategy.md` đặt theo bốn artifact của stage 2.5 Refined Mockups, để việc chuyển sang AI-DLC sau này ít phải đổi.
+
+### 6.3 Lộ trình AI-DLC
+
+Giai đoạn hiện tại theo SDLC: thiết kế bắt đầu từ PRD đã duyệt. Khi chuyển sang AI-DLC, thiết kế tham gia sớm hơn:
+
+| AI-DLC | Việc của UIUX-Workflow |
+|---|---|
+| 1.6 Rough Mockups, sau Scope Definition | Stage mới: wireframe khung và user flow từ intent và scope, trước khi có PRD; dùng lại flow prototype |
+| 2.4 User Stories | Designer góp ý story ở mức giao diện |
+| 2.5 Refined Mockups | D2 và D3 hiện tại, đầu vào đổi từ PRD sang user stories và requirements |
+| Construction | E2, E3, R1, H1 hiện tại |
+
+## 7. Cài đặt, cấu trúc repo và nâng cấp
+
+Cài đặt: cài Claude Code và đăng nhập, sau đó mở Claude Code ở thư mục bất kỳ và gửi `Cài đặt UIUX-Workflow từ https://github.com/buidhui/uiux-workflow`. AI tải repo và hướng dẫn từng bước: kết nối Figma, nối repo của PO, kiểm tra. Các việc Designer phải tự thao tác và cách cài tay ở [USER-GUIDE.md](USER-GUIDE.md) Phần A. Dành cho AI nhận yêu cầu cài đặt: tải repo về thư mục Designer chọn, đọc `engine/commands/setup.md` và làm theo từ bước 0.
+
+Quy trình chạy được với bốn cách kết nối Figma (kể cả không kết nối và gửi ảnh), với repo của PO có quyền push, chỉ đọc hoặc không có repo, và với công cụ AI khác Claude Code. Phần việc AI không làm được với một lựa chọn có cách thay thế ghi ở USER-GUIDE mục A3.
+
+| Thư mục | Nội dung | Thuộc về |
+|---|---|---|
+| `engine/` | Stage, lệnh, protocol, template (gồm khung Product KB), checklist, kiến thức nghề, agent, script | Quy trình dùng chung |
+| `.claude/` | Lối tắt lệnh và agent cho Claude Code, trỏ vào `engine/` | Quy trình dùng chung |
+| `AGENTS.md`, `CLAUDE.md` và các tài liệu ở thư mục gốc | Quy tắc cho AI và tài liệu của quy trình | Quy trình dùng chung |
+| `domain/` | Product KB của sản phẩm; repo engine chỉ có README | Sản phẩm |
+| `intents/` | Hồ sơ từng việc thiết kế | Sản phẩm |
+| `adhoc/` | Kết quả của việc một lượt, review màn đang chạy | Sản phẩm |
+| `memory/` | Bài học của team | Sản phẩm |
+| `.uiux/` | Trạng thái cài đặt và cách kết nối Figma của từng máy; không commit | Từng máy |
+
+Mỗi intent có cấu trúc:
 
 ```
-uiux-workflow/
-├── AGENTS.md, CLAUDE.md, README.md, USER-GUIDE.md, GLOSSARY.md, DOMAIN-SETUP.md   chung
-├── engine/            chung: stages/, commands/, protocol/, templates/ (gồm templates/domain/),
-│                      verification/, knowledge/, agents/
-├── .claude/           chung: lối tắt lệnh và agent cho Claude Code, trỏ vào engine/
-├── domain/            riêng sản phẩm: Product KB (repo engine chỉ có README)
-├── intents/           riêng sản phẩm: các việc thiết kế
-├── adhoc/             riêng sản phẩm: việc một lượt, review shadow
-├── memory/            riêng sản phẩm: bài học của team
-└── .uiux/             riêng từng máy: trạng thái cài đặt, không đưa lên git
-```
-
-Lấy bản engine mới bằng `git pull engine main` chỉ đổi phần chung. Bảng đầy đủ ở `AGENTS.md` mục Cấu trúc.
-
-Product KB ở `domain/`, manifest `domain.md` mười một mục, khung ở `engine/templates/domain/`, ưu tiên trỏ tới nguồn có sẵn (repo PO, thư mục dữ liệu UI kit, Figma). Định nghĩa, mức đầy đủ và cách cập nhật ở [DOMAIN-SETUP.md](DOMAIN-SETUP.md).
-
-## Cấu trúc một intent
-
-```
-intents/<yymmdd-slug>/
+intents/<slug>/
 ├── intent.md          PRD và intent của PO, file Figma, prototype, design ref
-├── state.md           màn và mức, stage, frame, version đã đẩy
-├── decisions.md       quyết định, câu trả lời, rủi ro chấp nhận, CR
-├── memory.md          quan sát, xét khi đóng intent
+├── state.md           màn, mức, đầu ra, stage, frame, version đã đẩy
+├── decisions.md       quyết định nguyên văn, câu trả lời, rủi ro chấp nhận, change request
+├── memory.md          quan sát của AI, xét khi đóng intent
 ├── inputs/            tài liệu, wireframe của PO, ảnh màn cũ; inputs/refs/ cho design ref
 ├── discovery/         D1, D2, D3
 ├── execution/         E1, E2, E3 (prototype ở execution/prototype/)
 ├── delivery/          R1, H1
-└── archive/           bản chụp D2, D3, E1, R1, H1 lúc duyệt
+└── archive/           bản chụp lúc duyệt, không chỉnh sửa
 ```
 
-## Nguồn gốc
+Mỗi sản phẩm dùng một repo riêng, tạo từ repo engine. Lấy bản engine mới bằng `git pull engine main`: bản mới chỉ đổi phần dùng chung, phần của sản phẩm giữ nguyên. Việc cần làm thêm khi nâng cấp ghi ở mục Nâng cấp của từng phiên bản trong [CHANGELOG.md](CHANGELOG.md). Product KB gồm mười một mục, ưu tiên trỏ tới nguồn có sẵn (repo PO, dữ liệu UI kit, Figma) thay vì chép; định nghĩa ở [DOMAIN-SETUP.md](DOMAIN-SETUP.md).
 
-| Phần | Lấy từ |
+## 8. Cơ sở phương pháp
+
+| Nguồn | Phần áp dụng trong quy trình |
 |---|---|
-| Ba phase, gate, bốn cách phản hồi, bảy state, feedback matrix, Dev feasibility | Hướng dẫn cũ của team |
-| Chiến lược thiết kế đặt theo artifact của Refined Mockups; chuẩn UX, accessibility | AWS AI-DLC, `aidlc-design-agent` và stage 1.6, 2.5 |
-| Điểm nhận và đẩy file thiết kế UX, Alignment | PO-Workflow, stage 2.43 |
-| Discovery chi tiết, bản kê thay đổi, review chấm điểm, fix-prompt, luật thao tác Figma | Bộ skill VIC |
-| Gap log, đề xuất bổ sung kit, không vẽ tay phần kit thiếu | Cách làm của các bộ skill dựng kit trên Figma |
-| Design ref, reference lock | `refero-design` |
-| Kiến thức nghề trong `engine/knowledge/` | Bộ skill VIC, `refero-design`, AWS AI-DLC Design Agent (MIT-0), WCAG 2.2, Nielsen, hướng dẫn cũ của team; nguồn chi tiết ở cuối từng file |
-| Bảng chọn biểu đồ, script kiểm prototype HTML | `ui-ux-pro-max-skill` (MIT): `charts.csv`, `design-audit.mjs` |
+| Hướng dẫn UI/UX Workflow cùng AI trước đây của team | Ba phase, các bước từ đọc yêu cầu tới bàn giao, gate, bốn cách phản hồi, bảy state cấp màn, feedback matrix, Dev Feasibility, prompt mẫu và lỗi thường gặp |
+| [AWS AI-DLC Workflows](https://github.com/awslabs/aidlc-workflows), giấy phép MIT-0 | Vai Design Agent và stage 1.6, 2.5: bốn mục đầu của chiến lược thiết kế; kiến thức về interaction pattern, UX, accessibility (đã sửa theo WCAG 2.2); cấu trúc stage và gate, qua PO-Workflow |
+| PO-Workflow | Điểm nhận và đẩy file thiết kế UX (stage 2.43); tách engine khỏi knowledge base của sản phẩm; hồ sơ intent, nhật ký quyết định, archive; định dạng câu hỏi; reviewer độc lập; vòng bài học; quy tắc kiểm sơ đồ Mermaid |
+| Bộ skill VIC (quy trình UI/UX và design system) | Discovery chi tiết, bản kê thay đổi, screen contract, rà trường hợp biên, flow map, review chấm điểm bảy trục, fix-prompt, luật thao tác Figma, review màn đang chạy, tra luật design system |
+| `refero-design` | Design ref, phân tích ref, chống trung bình hoá, reference lock |
+| Các bộ skill dựng UI kit trên Figma | Gap log, đề xuất bổ sung kit dừng ở bước đề xuất, không vẽ tay phần kit còn thiếu |
+| [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), giấy phép MIT | Bảng chọn biểu đồ theo dạng dữ liệu; script kiểm prototype HTML theo nhiều cỡ màn hình |
+| WCAG 2.2, W3C | Chuẩn accessibility mức AA |
+| Mười heuristic của Jakob Nielsen; cognitive walkthrough | Trục Heuristic của review |
 
-## Việc còn lại
-
-| # | Việc | Ghi chú |
-|---|---|---|
-| 1 | Hiệu chỉnh `engine/knowledge/scorecard.md` | Agent và Designer chấm độc lập cùng một bộ màn, theo mục Hiệu chỉnh của file |
-| 2 | Kiểm các khả năng ghi "Kiểm khi cài" ở `USER-GUIDE.md` mục A3 trên một file thật: dựng instance, lưu version, đọc design context để sinh HTML | Ghi kết quả vào `.uiux/setup.md` |
-| 3 | Chạy thử với một sản phẩm thật, dựng Product KB mức Tối thiểu | |
-| 4 | Lộ trình AI-DLC | Sau khi luồng SDLC chạy ổn |
-| 5 | Chạy thử `/setup` trên một máy chưa cài gì, với từng lựa chọn Figma | Lệnh mới ở v0.7, chưa chạy thử từ đầu tới cuối |
-
-## Lịch sử
-
-| Ngày | Thay đổi |
-|---|---|
-| 2026-10-13 | v0.1 đến v0.4: khung, rút nghi thức, mức thiết kế theo màn, tối ưu luồng |
-| 2026-10-22 | v0.5: luồng theo SDLC bắt đầu từ PRD đã duyệt; D2 thành Design Strategy, thêm D3 Alignment đẩy chiến lược lên repo PO và chờ đồng thuận; thêm E3 Prototype HTML; bỏ dựng component, thay bằng `/kit-proposal`; Product KB mười một mục; đối chiếu và lộ trình AWS AI-DLC |
-| 2026-10-22 | v0.6: thêm `SETUP.md` với bốn cách kết nối Figma, ba trường hợp repo PO, cách kiểm tra sau khi cài; thêm `AGENTS.md` cho công cụ AI khác; `figma-protocol.md` thêm mục Công cụ kết nối; agent UX Lead đọc được Figma qua mọi lựa chọn và làm việc được với ảnh; USER-GUIDE thêm tình huống ngoài luồng chuẩn; viết lại văn phong toàn bộ tài liệu theo dạng văn viết |
-| 2026-10-22 | v0.7: gộp `SETUP.md` vào USER-GUIDE thành Phần A; thêm lệnh `/setup` tự cài đặt từ link repo và làm tiếp sau khi mở lại; trạng thái cài đặt và cách kết nối Figma của từng máy chuyển sang `.uiux/setup.md` (không đưa lên git), bỏ khỏi Product KB mục 6; repo sản phẩm dùng remote `engine` để lấy bản cập nhật engine |
-| 2026-10-22 | v0.8: tách phần chung và phần riêng theo cơ chế của PO-Workflow. Engine chuyển từ `.claude/` sang `engine/` (`stages/` cho tám stage, `commands/` cho lệnh tiện ích); khung Product KB sang `engine/templates/domain/`; dữ liệu sản phẩm ở `domain/`, `intents/`, `adhoc/`, `memory/`; trạng thái cài đặt của máy ở `.uiux/`. `.claude/` chỉ còn lối tắt; bỏ lệnh riêng của từng stage, `/ux` là lối vào. Luật vận hành chuyển sang `AGENTS.md`, `CLAUDE.md` chỉ trỏ về. Nâng cấp repo sản phẩm tạo từ v0.7 trở về trước: chuyển dữ liệu ở `.claude/knowledge/domain/`, `.claude/intents/`, `.claude/adhoc/`, `.claude/memory/`, `.claude/local/` sang thư mục mới trước khi `git pull engine main` |
-| 2026-10-22 | v0.8.1: bỏ tên công ty và đường dẫn cụ thể của một công cụ dựng kit khỏi README, USER-GUIDE, DOMAIN-SETUP; viết lại thành điều kiện đúng với mọi sản phẩm |
-| 2026-10-27 | v0.9: khung Product KB mục 5, 6 có bảng theo module cho sản phẩm có nhiều module dùng kit và file Figma riêng; D2 có cột Module. Gap log luôn có nơi ghi dự phòng `domain/gap-log.md`. Kiểm prototype HTML theo ba bậc, không ghi "đã chạy thử" khi chưa chạy được trình duyệt. Slug intent dùng mã intent của PO khi có. Hộp xác nhận, modal có mã SCR. Sau mỗi gate AI đề xuất commit. H1 ghim version Figma cho mọi link bàn giao. Nâng cấp repo sản phẩm: bổ sung bảng module vào `domain/domain.md` mục 5, 6 khi cần; intent đã tạo giữ slug cũ. Viết đủ knowledge nghề: đọc yêu cầu, phân tích flow, rà trường hợp biên, UX writing tiếng Việt, design ref, heuristic, accessibility theo WCAG 2.2, thang chấm review có công thức chia theo số màn (chưa hiệu chỉnh). Thống nhất mã màn `SCR<n>` trong template. Thêm `data-visualization.md` (chọn biểu đồ theo câu hỏi) và script `engine/scripts/prototype-audit.mjs` kiểm prototype HTML tự động (bậc 2), dựa trên ui-ux-pro-max-skill (MIT). Thêm `engine/protocol/diagram-protocol.md` (cách vẽ sơ đồ flow màn, bảng lỗi cú pháp đã thử trên Mermaid 11.12) và script `engine/scripts/mermaid-lint.mjs` kiểm cú pháp sơ đồ, cùng bộ quy tắc với `po-tools.py check` của PO-Workflow; D2 kiểm sơ đồ trước gate |
+Với mỗi nguồn, quy trình chỉ giữ phương pháp; tên biến, file key, tên sản phẩm và số liệu không có nguồn đã được bỏ. Mục Nguồn ở cuối mỗi file trong `engine/knowledge/` ghi rõ phần đã lấy, đã sửa và đã bỏ. Thay đổi của từng phiên bản nằm trong [CHANGELOG.md](CHANGELOG.md).

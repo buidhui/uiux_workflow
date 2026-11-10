@@ -16,6 +16,7 @@
 
 ## Mức thiết kế và UI kit
 - [ ] **[BLOCK]** Mỗi màn có mức và độ phức tạp kèm lý do; đã đối chiếu hướng dẫn dùng kit và gap log của sản phẩm
+- [ ] **[BLOCK]** Mỗi màn có đầu ra; màn chỉ HTML là L1 và sản phẩm đạt đủ ba điều kiện ở KB mục 2, 7, 11
 - [ ] Vùng chính của mỗi màn có component của kit; phần thiếu là GAP có xử lý tạm
 - [ ] Màn L3 ghi rõ design ref đã có hoặc cần có
 - [ ] Mọi màn L1 có UX Brief nén

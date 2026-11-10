@@ -20,11 +20,11 @@ Mức: Tối thiểu là thiếu thì luồng không chạy được; Hiệu qu�
 | 4. App hiện có | App-map hoặc screen register, khung chung của màn, pattern theo loại màn, màn mẫu để nhân bản, ảnh màn | Hiệu quả | D2, E2, R1, H1 | Thiết kế lệch pattern app, dựng lại khung từ đầu | Screen register của công cụ dựng kit (nếu có), file Figma |
 | 5. Design system và UI kit | File design system và UI kit, hướng dẫn dùng kit trên màn, luật design system, gap log, người phụ trách, công cụ dựng kit cho `/kit-proposal`, mức sẵn sàng | Tối thiểu: file kit và mức sẵn sàng. Hiệu quả: hướng dẫn dùng kit và gap log | D2, E1, E2, R1 | Không gán được L1, L2; AI không dựng UI bằng instance; gap không về tay người phụ trách kit | Hướng dẫn dùng kit và gap log ở nơi công cụ dựng kit lưu (nếu có), file Figma |
 | 6. Figma workspace | File thiết kế, cấu trúc page, khu vực nháp cho AI, quy ước tên frame, changelog và version, người cấp quyền | Tối thiểu | E2, E3, R1, H1 | AI ghi sai vị trí, không có nơi an toàn để dựng | File Figma |
-| 7. Frontend stack | Thư viện component của frontend thật và version, theme ở dạng code, icon, font, cách tải trong một file HTML, bảng ánh xạ component kit sang code | Hiệu quả | D2, E3 | Prototype chỉ giống thiết kế, không giống hành vi thật | Repo frontend, cấu hình theme |
+| 7. Frontend stack | Thư viện component của frontend thật và version, theme ở dạng code, icon, font, cách tải trong một file HTML, bảng ánh xạ component kit sang code (điều kiện để màn L1 đi làn chỉ HTML) | Hiệu quả | D2, E3 | Prototype chỉ giống thiết kế, không giống hành vi thật | Repo frontend, cấu hình theme |
 | 8. Nội dung | Giọng văn, thuật ngữ sản phẩm, câu mẫu | Hiệu quả | D2, E1, E2 | Chữ trên màn mỗi nơi một cách | Content guide có sẵn, hoặc `content-guide.md` |
 | 9. Chuẩn chất lượng | Mức accessibility, ngưỡng vùng chạm, corner checklist giao diện, điều chỉnh thang điểm | Hiệu quả | D2, R1 | Review dùng chuẩn chung, sót góc riêng của sản phẩm | `corner-checklist.md` |
 | 10. Tham chiếu | Brand guideline, thư viện design ref, sản phẩm tham khảo | Thêm | E1 | Màn L3 phải tìm ref từ đầu | `assets/refs/`, brand guideline |
-| 11. Người và kênh | PO, Dev PIC, QA PIC, nơi nhận góp ý, công cụ quản lý task | Tối thiểu: nơi góp ý và công cụ task | D3, R1, H1 | Không biết gửi ai, đóng task ở đâu | Danh bạ team |
+| 11. Người và kênh | PO, Dev PIC, QA PIC, nơi nhận góp ý, công cụ quản lý task, Dev nhận bàn giao bằng HTML hay cần Figma | Tối thiểu: nơi góp ý và công cụ task | D3, R1, H1 | Không biết gửi ai, đóng task ở đâu | Danh bạ team |
 
 ## 3. Ba mức đầy đủ
 

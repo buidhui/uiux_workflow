@@ -54,6 +54,14 @@ Thuật ngữ và họ mã của UIUX-Workflow. Tên phản hồi và state theo
 | Delivery summary | Mục lục và checklist bàn giao ở H1 | Hướng dẫn cũ của team |
 | Finding · Scorecard · Verdict · Fix-prompt | Phát hiện của review; điểm trên 100 theo bảy trục; PASS đến FAIL; prompt sửa tự chứa | VIC |
 
+## Đầu ra của màn
+
+| Thuật ngữ | Nghĩa | Nguồn |
+|---|---|---|
+| Chỉ HTML | Màn L1 được thiết kế và bàn giao bằng file HTML, không qua Figma; chỉ dùng khi sản phẩm đạt ba điều kiện ở `engine/protocol/design-levels.md` | Engine |
+| Figma + HTML | Màn được dựng trên Figma ở E2, prototype HTML dựng từ frame Figma ở E3 | Engine |
+| Chế độ ghi chú bàn giao | Lớp ghi chú bật tắt trong file HTML, thay cho ghi chú trên Figma với màn chỉ HTML | Engine |
+
 ## Họ mã
 
 | Mã | Nghĩa | Stage |

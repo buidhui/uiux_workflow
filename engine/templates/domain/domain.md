@@ -22,6 +22,7 @@ Manifest của knowledge base sản phẩm. Engine đọc file này ở đầu m
 - Quy ước commit, branch, ai được sửa file nào:
 - Cách đồng thuận chiến lược thiết kế (buổi họp, tài liệu, người ký; với việc nhỏ thì như thế nào):
 - Quy ước mã màn và mã yêu cầu dùng chung với PO:
+- Người duyệt chấp nhận xem thiết kế trên trình duyệt (điều kiện làn chỉ HTML, `engine/protocol/design-levels.md`): có · không
 
 ## 3. Kiến thức nghiệp vụ
 - KB nghiệp vụ của PO (đường dẫn, chỉ đọc):
@@ -58,6 +59,7 @@ Sản phẩm có nhiều ứng dụng con hoặc module dùng kit khác nhau: đ
 - Quy ước đặt tên frame:
 - Trang changelog và quy ước lưu version:
 - Người cấp quyền sửa file Figma cho Designer mới:
+- Figma có còn là nguồn sự thật cho màn đang chạy không. Mặc định có: màn sửa bằng HTML được cập nhật lại trên Figma ở H1:
 
 Cách kết nối Figma và kết quả kiểm khả năng là thông tin của từng máy, nằm ở `.uiux/setup.md`, không ghi ở đây.
 
@@ -66,6 +68,7 @@ Cách kết nối Figma và kết quả kiểm khả năng là thông tin của 
 - Theme hoặc token ở dạng code (file cấu hình, biến CSS) và đường dẫn:
 - Bộ icon, font:
 - Cách tải trong một file HTML (CDN được phép):
+- Bảng ánh xạ component kit sang code (đường dẫn), dùng cho màn chỉ HTML. Chưa có bảng thì làn chỉ HTML chưa bật:
 
 ## 8. Nội dung
 - Giọng văn, cách xưng hô:
@@ -86,6 +89,7 @@ Cách kết nối Figma và kết quả kiểm khả năng là thông tin của 
 - PO, Dev PIC, QA PIC thường gặp:
 - Nơi nhận góp ý (comment Figma, Jira, chat):
 - Công cụ quản lý task và cách chuyển Done:
+- Dev nhận bàn giao bằng HTML (dựng từ HTML, ví dụ bằng công cụ AI) hay cần Dev Mode, Code Connect của Figma (điều kiện làn chỉ HTML):
 
 ## Thành phần của KB
 - `domain.md`, file này

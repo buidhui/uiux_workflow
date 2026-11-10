@@ -9,11 +9,11 @@ argument-hint: <intent-slug>
 | Stage | E2 UI Design |
 | Slug | ui-design |
 | Phase | execution |
-| Execution | always. AI dựng khi mức sẵn sàng design system từ 1 và màn được giao cho AI ở D2. Designer dựng tay thì ghi link frame và tự kiểm, không dựng |
+| Execution | Chỉ cho màn có đầu ra Figma + HTML. Mọi màn của intent đi làn chỉ HTML: ghi `[S] đầu ra chỉ HTML`, sang E3. AI dựng khi mức sẵn sàng design system từ 1 và màn được giao cho AI ở D2. Designer dựng tay thì ghi link frame và tự kiểm, không dựng |
 | Produces | frame Figma trong khu vực nháp · `execution/ui-design/build-report.md` |
 | Consumes | `design-strategy.md` (bắt buộc) · `ux-brief.md` khi E1 chạy · app-map |
 | Requires | ux-brief, hoặc alignment khi E1 nén |
-| Áp dụng | Màn L1, L2: AI dựng được. Màn L3: Designer dẫn; AI chỉ làm phương án khám phá theo reference lock khi Designer yêu cầu |
+| Áp dụng | Màn có đầu ra Figma + HTML. Màn L1, L2: AI dựng được. Màn L3: Designer dẫn; AI chỉ làm phương án khám phá theo reference lock khi Designer yêu cầu |
 | Reviewer | none, R1 là review |
 | Archive | no; Figma giữ lịch sử bằng version có tên |
 | Template | `engine/templates/build-report.md` |

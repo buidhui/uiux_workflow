@@ -74,7 +74,8 @@ Khi intent xong hoặc đóng: đưa các dòng trong `memory.md` thành danh s�
 ## Stage nén hoặc bỏ qua
 - E1 nén vào D2 khi mọi màn L1: ghi `[S] nén vào D2`, không mở gate.
 - E2 khi Designer tự dựng UI: ghi link frame, AI chỉ tự kiểm, sang E3.
-- E3 bỏ qua với CR trên màn có sẵn khi Designer không yêu cầu: ghi `[S]` kèm lý do.
+- E2 khi mọi màn đi làn chỉ HTML: ghi `[S] đầu ra chỉ HTML`, sang E3. Intent có cả hai loại màn thì E2 chỉ chạy cho màn Figma + HTML.
+- E3 bỏ qua với CR trên màn có sẵn đi Figma + HTML khi Designer không yêu cầu: ghi `[S]` kèm lý do. Có màn chỉ HTML thì E3 không được bỏ.
 - D1 chạy liền D2 với CR mọi màn L1 logic thường: không mở Context checkpoint riêng.
 
 ## Nâng mức giữa chừng

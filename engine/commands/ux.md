@@ -31,7 +31,7 @@ Lệch thì liệt kê và hỏi Designer muốn sửa state hoặc sửa file. 
 | Designer nói | Làm |
 |---|---|
 | "làm lại stage này" | Hỏi xác nhận. Chụp artifact hiện tại vào `archive/` với hậu tố `-redo`. Đặt stage về `[ ]` |
-| "nhảy tới <stage>" | Nói rõ stage nào bị bỏ qua, ghi `[S] nhảy qua`, hỏi xác nhận. Nhảy tới E1, E2 khi D3 chưa qua thì từ chối: chỉ vẽ lên Figma khi chiến lược đã được các bên đồng thuận |
+| "nhảy tới <stage>" | Nói rõ stage nào bị bỏ qua, ghi `[S] nhảy qua`, hỏi xác nhận. Nhảy tới E1, E2, E3 khi D3 chưa qua thì từ chối: chỉ dựng UI, trên Figma hoặc bằng HTML, khi chiến lược đã được các bên đồng thuận |
 | "màn này cần làm mới", "thiếu component" | Nâng mức thiết kế của màn theo `design-levels.md`, thêm bước còn thiếu, ghi DEC |
 | "dừng hôm nay" | Ghi Parked, nói cách tiếp tục |
 | "PO đổi yêu cầu", "bổ sung màn", "bỏ flow" | Chuyển sang `/change-request` |

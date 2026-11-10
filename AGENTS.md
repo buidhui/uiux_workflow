@@ -15,7 +15,7 @@ File này là hướng dẫn chung cho mọi công cụ AI; `CLAUDE.md` chỉ tr
 |---|---|---|---|
 | `engine/` | Chung | `stages/` tám stage, `commands/` lệnh tiện ích, `protocol/`, `templates/` (gồm `templates/domain/` là khung Product KB), `verification/`, `knowledge/` kiến thức nghề, `agents/` vai reviewer, `scripts/` script hỗ trợ | Thay theo engine |
 | `.claude/` | Chung | Cấu hình riêng cho Claude Code: mỗi lệnh và agent là lối tắt trỏ tới file trong `engine/` | Thay theo engine |
-| `AGENTS.md`, `CLAUDE.md`, `README.md`, `USER-GUIDE.md`, `GLOSSARY.md`, `DOMAIN-SETUP.md` | Chung | Tài liệu và luật vận hành | Thay theo engine |
+| `AGENTS.md`, `CLAUDE.md`, `README.md`, `USER-GUIDE.md`, `GLOSSARY.md`, `DOMAIN-SETUP.md`, `CHANGELOG.md` | Chung | Tài liệu và luật vận hành | Thay theo engine |
 | `domain/` | Riêng sản phẩm | Product KB; repo engine chỉ có `README.md` | Giữ nguyên |
 | `intents/` | Riêng sản phẩm | Các việc thiết kế | Giữ nguyên |
 | `adhoc/` | Riêng sản phẩm | Kết quả của việc một lượt, review shadow | Giữ nguyên |

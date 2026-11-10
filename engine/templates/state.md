@@ -26,8 +26,8 @@ Ký hiệu: `[ ]` chưa làm · `[-]` đang làm · `[?]` chờ duyệt · `[R]`
 - [ ] H1 handoff
 
 ## Màn và mức thiết kế
-| SCR | Tên | Mức | Logic | UX Brief | UI do ai dựng | Design ref |
-|---|---|---|---|---|---|---|
+| SCR | Tên | Mức | Logic | Đầu ra | UX Brief | UI do ai dựng | Design ref |
+|---|---|---|---|---|---|---|---|
 
 ## Current
 | | |
@@ -50,7 +50,7 @@ Ký hiệu: `[ ]` chưa làm · `[-]` đang làm · `[?]` chờ duyệt · `[R]`
 | delivery-summary | | | |
 
 ## Frames
-| SCR | Node hoặc link | Dựng bởi | Theo version scope, brief | Vị trí: nháp hoặc page chính |
+| SCR | Node Figma hoặc màn trong HTML (`#/scr-n`) | Dựng bởi | Theo version scope, brief | Vị trí: nháp, page chính, hoặc HTML |
 |---|---|---|---|---|
 
 ## Log

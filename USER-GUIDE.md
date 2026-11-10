@@ -117,7 +117,7 @@ Repo `buidhui/uiux-workflow` là engine, chưa gắn sản phẩm. Mỗi sản p
 |---|---|
 | Sản phẩm đã có repo UIUX-Workflow | Cài từ link repo sản phẩm. Product KB đã có, không cần dựng lại |
 | Sản phẩm mới | Cài từ link engine. `/setup` đổi tên remote `origin` thành `engine`; sau đó chạy `/new-domain`. Người phụ trách tạo repo sản phẩm khi cần chia sẻ cho Designer khác |
-| Lấy bản cập nhật engine | `git pull engine main` trong repo sản phẩm. Bản mới chỉ đổi phần chung; phần riêng giữ nguyên. Khi khung Product KB ở `engine/templates/domain/` có mục mới, bổ sung vào `domain/domain.md` theo ghi chú của phiên bản đó trong bảng Lịch sử của README |
+| Lấy bản cập nhật engine | `git pull engine main` trong repo sản phẩm. Bản mới chỉ đổi phần chung; phần riêng giữ nguyên. Khi khung Product KB ở `engine/templates/domain/` có mục mới, bổ sung vào `domain/domain.md` theo mục Nâng cấp của phiên bản đó trong `CHANGELOG.md` |
 | Không dùng git | Quy trình vẫn chạy; mất lịch sử thay đổi và không chia sẻ được với Designer khác. Sao lưu thư mục `intents/` định kỳ |
 
 AI chỉ commit và push khi Designer yêu cầu.
@@ -148,7 +148,7 @@ AI chỉ commit và push khi Designer yêu cầu.
 
 ## Phần B. Làm một việc từ PRD tới bàn giao
 
-Ví dụ xuyên suốt: tính năng Chứng chỉ, ba màn. Danh sách chứng chỉ ghép từ bảng và bộ lọc có sẵn trong kit (L1). Chi tiết chứng chỉ cần một khối lịch sử cấp mà kit chưa có (L2). Trang chứng chỉ công khai để người học chia sẻ, cần gây ấn tượng (L3).
+Ví dụ xuyên suốt: tính năng Chứng chỉ, ba màn. Danh sách chứng chỉ ghép từ bảng và bộ lọc có sẵn trong kit (L1, chỉ HTML). Chi tiết chứng chỉ cần một khối lịch sử cấp mà kit chưa có (L2, Figma + HTML). Trang chứng chỉ công khai để người học chia sẻ, cần gây ấn tượng (L3, Figma + HTML).
 
 ### Bước 1. Tạo việc khi PRD đã duyệt
 
@@ -168,7 +168,7 @@ Designer sửa phần AI hiểu sai, gửi câu hỏi cho PO, sau đó phản h�
 ### Bước 3. D2 Design Strategy (Strategy Gate)
 
 AI hỏi vài câu: modal hoặc trang riêng, màn phát sinh ngoài yêu cầu, mức của màn, màn nào AI dựng UI. Sau đó trình `design-strategy.md`:
-- Danh sách màn gắn user story, mức thiết kế.
+- Danh sách màn gắn user story, mức thiết kế, đầu ra của từng màn (chỉ HTML hoặc Figma + HTML).
 - Sơ đồ luồng, bảy state từng màn, trường hợp biên.
 - Component của UI kit cho từng vùng; phần kit còn thiếu và cách xử lý tạm.
 - Accessibility, màn cần sáng tạo, ý kiến về PRD, rủi ro và câu hỏi.
@@ -195,9 +195,9 @@ AI pull repo PO, đọc kết quả. Có quyết định đổi thiết kế th�
 
 Phản hồi tại UX Brief Gate.
 
-### Bước 6. E2 UI Design
+### Bước 6. E2 UI Design (chỉ cho màn Figma + HTML)
 
-Khi công cụ Figma có quyền ghi (mục A3), kit có hướng dẫn dùng và mức sẵn sàng cho phép, AI dựng màn L1, L2 bằng instance của kit:
+Màn L1 đi làn chỉ HTML không qua bước này; AI dựng thẳng ở Bước 7. Với màn Figma + HTML, khi công cụ Figma có quyền ghi (mục A3), kit có hướng dẫn dùng và mức sẵn sàng cho phép, AI dựng bằng instance của kit:
 1. AI lưu version Figma, sau đó dựng trong khu vực nháp; thiết kế chính không bị sửa.
 2. Màn lớn thì AI trình kế hoạch chia đợt; Designer duyệt, xem ảnh chụp cuối mỗi đợt, góp ý thì AI sửa ngay.
 3. Gặp phần kit chưa có: AI dùng xử lý tạm đã ghi và chạy `/kit-proposal`; không tự vẽ component.
@@ -206,7 +206,7 @@ Màn sáng tạo, mọi màn Designer muốn tự làm, và mọi màn khi công
 
 ### Bước 7. E3 Prototype
 
-AI sinh prototype HTML một file từ màn trên Figma: thao tác được trọn luồng, có bảng điều khiển đổi vai, đổi bộ dữ liệu (rỗng, nhiều, chuỗi dài), ép state (đang tải, lỗi, không có quyền). Mở bằng trình duyệt. Muốn trình bày trên Figma thì nói "nối prototype trên Figma"; AI nối điều hướng giữa các frame.
+Màn chỉ HTML: AI dựng HTML trực tiếp bằng component của frontend theo bảng ánh xạ trong Product KB, đủ bảy state, kèm chế độ ghi chú bàn giao; đây là thiết kế chính của màn. Màn Figma + HTML: AI sinh prototype HTML từ màn trên Figma. Cả hai nằm trong một file, thao tác được trọn luồng, có bảng điều khiển đổi vai, đổi bộ dữ liệu (rỗng, nhiều, chuỗi dài), ép state (đang tải, lỗi, không có quyền). Mở bằng trình duyệt. Muốn trình bày trên Figma thì nói "nối prototype trên Figma"; AI nối điều hướng giữa các frame.
 
 ### Bước 8. R1 Review & Refine (UI Gate)
 
@@ -218,7 +218,7 @@ Phản hồi `Approved` khi không còn góp ý bắt buộc. Sau đó Designer 
 
 ### Bước 9. H1 Handoff & Done (Delivery Gate)
 
-AI ghi chú bàn giao cạnh frame trên Figma, cập nhật file thiết kế UX trên repo PO (link Figma từng màn, link prototype), viết `delivery-summary.md`, soạn nội dung chuyển task sang Done. Designer xem diff, gửi link cho Dev, cập nhật task, phản hồi `Approved`. AI hỏi một câu cuối: có gì cần nhớ cho lần sau.
+AI ghi chú bàn giao cạnh frame trên Figma (màn Figma + HTML) hoặc trong chế độ ghi chú của file HTML (màn chỉ HTML), commit file HTML, cập nhật lại Figma cho màn chỉ HTML đã có trên Figma, cập nhật file thiết kế UX trên repo PO (link Figma kèm version, link HTML kèm commit), viết `delivery-summary.md`, soạn nội dung chuyển task sang Done. Designer xem diff, gửi link cho Dev, cập nhật task, phản hồi `Approved`. AI hỏi một câu cuối: có gì cần nhớ cho lần sau.
 
 Dev góp ý trong lúc làm: nói "Dev góp ý về chứng chỉ: ...". AI mở lại bước review cho màn đó.
 

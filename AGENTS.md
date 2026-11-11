@@ -22,7 +22,7 @@ File này là hướng dẫn chung cho mọi công cụ AI; `CLAUDE.md` chỉ tr
 | `memory/team.md` | Riêng sản phẩm | Bài học của team | Giữ nguyên |
 | `.uiux/` | Riêng từng máy | Trạng thái cài đặt, cách kết nối Figma; không đưa lên git | Giữ nguyên |
 
-Không sửa file trong phần chung khi đang làm việc cho một sản phẩm. Phần chung cần đổi thì sửa ở repo engine, sau đó lấy về bằng `git pull engine main` (`USER-GUIDE.md` mục A5). Ngoại lệ duy nhất: dòng `tools` của `.claude/agents/ux-lead.md` khi máy dùng server Figma tên khác (mục A3).
+Không sửa file trong phần chung khi đang làm việc cho một sản phẩm. Phần chung cần đổi thì sửa ở repo engine, sau đó lấy về bằng `git pull engine main` (`USER-GUIDE.md` mục A5). Ngoại lệ duy nhất: dòng `tools` của `.claude/agents/ai-reviewer.md` khi máy dùng server Figma tên khác (mục A3).
 
 ## Luồng làm việc
 
@@ -120,6 +120,6 @@ Repo của PO và nơi đẩy chiến lược thiết kế: KB mục 2. Nơi bà
 Áp dụng cho Codex, Cursor và công cụ khác đọc file này.
 
 1. Lệnh của quy trình là file Markdown. Khi người dùng gọi một lệnh, ví dụ `/ux` hoặc "làm bước kế tiếp", đọc file tương ứng trong `engine/commands/` (ví dụ `engine/commands/ux.md`) và làm theo từng bước. Stage nằm ở `engine/stages/`.
-2. Review độc lập: không tự review thiết kế do chính phiên này làm ra. Đề nghị người dùng mở phiên mới, đưa các file theo `engine/protocol/review-protocol.md` và yêu cầu phiên đó đóng vai theo `engine/agents/ux-lead.md`.
+2. Review độc lập: không tự review thiết kế do chính phiên này làm ra. Đề nghị người dùng mở phiên mới, đưa các file theo `engine/protocol/review-protocol.md` và yêu cầu phiên đó đóng vai theo `engine/agents/ai-reviewer.md`.
 3. Hộp chọn câu hỏi (AskUserQuestion) có thể không có trong công cụ này. Khi đó trình câu hỏi dạng danh sách đánh chữ cái và chờ người dùng trả lời.
 4. Cài đặt và kết nối Figma: `USER-GUIDE.md` Phần A, lệnh `engine/commands/setup.md`. Bước thêm kết nối Figma dùng cách cấu hình MCP của công cụ đang dùng, giữ tên server `figma-desktop`, `figma-console`.

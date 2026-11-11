@@ -94,7 +94,7 @@ Ví dụ: Reference lock: hướng chính "dashboard tổng quan mật độ v�
 ## Dùng ở E2 và R1
 
 - E2: Designer dựng theo lock; AI làm phương án khám phá theo lock khi Designer yêu cầu. Tự kiểm S9 có mục bám reference lock.
-- R1: agent `ux-lead` đối chiếu lock. Đặc điểm giữ mà vắng, hoặc điều đã loại bỏ mà vẫn xuất hiện, là finding của trục Visual hierarchy; đây là Visual judgment nên mức cao nhất là Major theo `scorecard.md`.
+- R1: agent `ai-reviewer` đối chiếu lock. Đặc điểm giữ mà vắng, hoặc điều đã loại bỏ mà vẫn xuất hiện, là finding của trục Visual hierarchy; đây là Visual judgment nên mức cao nhất là Major theo `scorecard.md`.
 - Giá trị lấy từ ref thay cho design system (màu, số đo, font) là finding của trục Consistency với design system, có số đo.
 - Designer đổi hướng sau UX Brief Gate: cập nhật lock, ghi DEC; R1 chấm theo lock mới nhất.
 

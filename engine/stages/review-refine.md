@@ -14,7 +14,7 @@ argument-hint: <intent-slug>
 | Consumes | frame Figma của màn Figma + HTML, file HTML và ảnh chụp của màn chỉ HTML (bắt buộc) · `design-strategy.md` (bắt buộc) · `ux-brief.md`, `build-report.md`, prototype (khi có) · góp ý của BA, Dev, Reviewer (Designer dán vào hoặc lấy từ comment Figma, Jira) |
 | Requires | prototype, hoặc ui-design khi E3 bỏ qua |
 | Áp dụng | Review độc lập bắt buộc cho màn L2, L3 và màn logic phức tạp; màn L1 logic thường khi Designer muốn |
-| Reviewer | ux-lead |
+| Reviewer | ai-reviewer |
 | Archive | yes |
 | Template | `engine/templates/feedback.md` · `engine/templates/design-review.md` · `engine/templates/fix-prompt.md` |
 | Checklist | `engine/verification/review-refine.md` |
@@ -27,7 +27,7 @@ Thiết kế đúng phạm vi, đúng design system, đúng chuẩn nghề, mọ
 
 ## Hai vòng, theo thứ tự
 Vòng 1, nội bộ, nhanh: sửa xong lỗi do AI review tìm ra trước khi đưa thiết kế cho người khác xem.
-1. Review độc lập cho màn cần: AI đo số liệu, ghi `context.md`; agent `ux-lead` tự xem thiết kế qua quyền đọc Figma, ghi `design-review.md` với bảng điểm, verdict, finding. Màn L3 thêm tiêu chí bám reference lock. Màn chỉ HTML: số đo lấy từ CSS đã tính của trình duyệt và từ báo cáo `prototype-audit.mjs`, ảnh chụp từng màn ở các breakpoint ghi vào `context.md`; trục Consistency chấm theo bảng ánh xạ component ở KB mục 7.
+1. Review độc lập cho màn cần: AI đo số liệu, ghi `context.md`; agent `ai-reviewer` tự xem thiết kế qua quyền đọc Figma, ghi `design-review.md` với bảng điểm, verdict, finding. Màn L3 thêm tiêu chí bám reference lock. Màn chỉ HTML: số đo lấy từ CSS đã tính của trình duyệt và từ báo cáo `prototype-audit.mjs`, ảnh chụp từng màn ở các breakpoint ghi vào `context.md`; trục Consistency chấm theo bảng ánh xạ component ở KB mục 7.
 2. Finding vào feedback matrix trong `feedback.md`. Designer sửa tay, hoặc AI sửa trong khu vực nháp khi được yêu cầu. Màn chỉ HTML: AI sửa thẳng trong file HTML.
 3. Soạn sẵn tin nhắn mời BA, Dev, Reviewer góp ý: link frame hoặc file HTML, cách mở prototype, điều cần họ xem, hạn góp ý.
 

@@ -28,23 +28,7 @@ Mọi quyết định, câu trả lời và bản đã duyệt được lưu tro
 
 ## 1. Tổng quan
 
-### 1.1 Vị trí trong vòng đời sản phẩm
-
-```mermaid
-flowchart LR
-  PO["PO-Workflow"] -->|"PRD đã duyệt"| POR[("Repo của PO")]
-  POR -->|"D1 đọc PRD"| UX["UIUX-Workflow<br/>Designer cùng AI"]
-  UX -->|"D3 đưa chiến lược thiết kế"| POR
-  KB[("Product KB")] --> UX
-  KIT["UI kit trên Figma"] --> UX
-  UX -->|"H1 bàn giao Figma, HTML"| DEV["Dev, QA"]
-  UX -.->|"đề xuất bổ sung component"| KO["Người phụ trách kit"]
-  KO -.-> KIT
-```
-
-Sơ đồ trên: UIUX-Workflow nhận PRD đã duyệt từ repo của PO, dùng Product KB và UI kit của sản phẩm làm đầu vào, đưa chiến lược thiết kế trở lại repo của PO để đồng thuận, bàn giao thiết kế cho Dev và QA, và chuyển phần kit còn thiếu cho người phụ trách kit dưới dạng đề xuất.
-
-### 1.2 Phạm vi
+### 1.1 Phạm vi
 
 Mỗi yêu cầu thiết kế là một intent, lưu tại `intents/<slug>/`. Intent đi qua tám stage thuộc ba phase. Discovery & Strategy hiểu yêu cầu và thống nhất chiến lược thiết kế. Design Execution dựng giao diện và prototype. Review, Refine & Deliver rà soát, xử lý góp ý và bàn giao. Độ sâu của từng bước được quyết định riêng cho từng màn, dựa trên mức thiết kế của màn đó.
 
@@ -58,93 +42,20 @@ Mỗi yêu cầu thiết kế là một intent, lưu tại `intents/<slug>/`. In
 
 Điều kiện bắt đầu gồm hai điểm: PRD đã được duyệt, và sản phẩm có Product KB ở mức Tối thiểu theo [DOMAIN-SETUP.md](DOMAIN-SETUP.md). Khi Product KB chưa đủ, lệnh tạo intent hỏi bổ sung sáu thông tin tối thiểu ở lần chạy đầu tiên.
 
-### 1.3 Vai trò
+### 1.2 Vòng đời của một intent
 
-| Vai | Trách nhiệm |
-|---|---|
-| AI | Đọc PRD và Product KB trước khi đặt câu hỏi; phân tích flow, màn, state, trường hợp biên; đề xuất mức thiết kế; dựng giao diện bằng instance của UI kit hoặc bằng HTML; dựng prototype; đo và tự kiểm; soạn file thiết kế UX và ghi chú bàn giao; đánh dấu `❓PO`, `❓Designer` ở phần chưa rõ thay vì suy đoán |
-| Designer | Phê duyệt hoặc yêu cầu sửa ở mỗi gate; quyết định mức thiết kế, đầu ra của màn, hướng thị giác và phương án; tự dựng giao diện cho màn cần sáng tạo hoặc khi muốn; xử lý góp ý |
-| UX Lead | Agent review độc lập, chỉ đọc thiết kế và tài liệu được giao, không tiếp cận hội thoại giữa Designer và AI; chấm điểm theo bảy trục và kết luận verdict |
-| PO | Cung cấp PRD đã duyệt; trả lời câu hỏi; cùng các bên đồng thuận chiến lược thiết kế ở D3. PO không duyệt chi tiết thiết kế; bản cuối được xem trên Figma và prototype |
-| BA, Dev, QA | Trả lời câu hỏi; góp ý ở R1; Dev nêu ý kiến về khả năng triển khai; nhận bàn giao |
-| Người phụ trách kit | Nhận đề xuất bổ sung component, quyết định việc dựng vào UI kit |
-| Người phụ trách quy trình | Duy trì engine và Product KB, tổng hợp bài học |
+Mỗi stage có một mã gồm chữ cái của nhóm việc và số thứ tự: D cho Discovery & Strategy, E cho Design Execution, R cho Review & Refine, H cho Handoff. Các phần sau của tài liệu dùng mã này.
 
-Trình tự tương tác giữa các vai trong một intent điển hình:
-
-```mermaid
-sequenceDiagram
-  participant D as Designer
-  participant A as AI
-  participant L as UX Lead
-  participant P as PO và các bên
-  participant V as Dev
-  D->>A: Tạo intent từ PRD đã duyệt
-  A->>A: D1, D2 phân tích PRD, lập chiến lược
-  A->>D: Trình Strategy Gate
-  D->>A: Duyệt mức và đầu ra của từng màn
-  A->>P: D3 đưa chiến lược lên repo của PO
-  P->>A: Kết quả đồng thuận
-  A->>A: E1 đến E3 dựng giao diện và prototype
-  A->>L: R1 giao thiết kế để review độc lập
-  L->>D: Điểm theo bảy trục và verdict
-  V->>D: Góp ý về khả năng triển khai
-  D->>A: Duyệt UI Gate và Delivery Gate
-  A->>V: H1 bàn giao thiết kế
-```
-
-Sơ đồ trên: Designer khởi tạo intent và phê duyệt ở các gate; AI thực hiện phần phân tích, dựng và soạn tài liệu; PO và các bên chỉ tham gia ở bước đồng thuận chiến lược; UX Lead review độc lập trước khi Designer duyệt; Dev góp ý ở R1 và nhận bàn giao ở H1.
-
-### 1.4 Đầu ra bàn giao
-
-| Đầu ra | Người nhận | Thời điểm |
-|---|---|---|
-| Chiến lược thiết kế, đưa vào file thiết kế UX trên repo của PO | PO, Dev, QA | D3; cập nhật link ở H1 |
-| Thiết kế trên Figma, ghim version bàn giao | Dev, QA | H1, cho màn đi Figma + HTML |
-| File HTML: prototype của mọi màn, đồng thời là thiết kế chính của màn chỉ HTML, ghim theo commit | PO, Dev, QA | E3; ghim ở H1 |
-| `delivery-summary.md`: mục lục bàn giao và checklist cho Dev | Dev | H1 |
-| Đề xuất bổ sung UI kit, ghi trong gap log | Người phụ trách kit | Khi gặp phần tử kit chưa có |
-
-### 1.5 Đặc điểm chính
-
-| Đặc điểm | Cơ chế |
-|---|---|
-| Thống nhất chiến lược trước khi vẽ | D3 đưa chiến lược lên repo của PO; giao diện chỉ được dựng sau khi Alignment Gate được thông qua |
-| Độ sâu theo từng màn | Mức L1, L2, L3 kết hợp với độ phức tạp logic quyết định UX Brief, review và đầu ra của màn |
-| Đầu ra gọn cho màn đơn giản | Màn chỉ ghép component có sẵn được thiết kế và bàn giao bằng HTML, không qua Figma, khi sản phẩm đủ điều kiện |
-| Bám đúng UI kit của sản phẩm | Giao diện dựng bằng instance của kit; phần tử kit chưa có được ghi `GAP` và đề xuất qua `/kit-proposal`, AI không tự vẽ thay |
-| An toàn với file Figma | AI chỉ ghi vào khu vực nháp và lưu version có tên trước mỗi lần ghi |
-| Quyết định được lưu vết | Lời duyệt và câu trả lời ghi nguyên văn trong `decisions.md`; bản đã duyệt được chụp vào `archive/` |
-| Chất lượng đo được | Checklist có mục chặn, review độc lập, script kiểm sơ đồ và prototype; stage chỉ được báo hoàn thành sau khi đã đo |
-| Dùng chung cho nhiều sản phẩm và công cụ | Engine tách khỏi Product KB; bốn cách kết nối Figma; chạy được với công cụ AI khác qua `AGENTS.md`; cài đặt từ link repo bằng `/setup` |
-
-### 1.6 Khác biệt so với thiết kế trực tiếp bằng AI hội thoại
-
-| Khía cạnh | Dùng trực tiếp AI hội thoại | UIUX-Workflow |
-|---|---|---|
-| Hiểu yêu cầu | AI suy luận từ đoạn mô tả được dán vào | AI đọc PRD và Product KB, tách Confirmed, Assumption, Open question; điểm chưa rõ trở thành câu hỏi cho PO |
-| Thông tin còn thiếu | AI tự bổ sung | AI đánh dấu `❓PO` hoặc dừng ở câu hỏi chặn |
-| Bám design system | AI tự chọn màu, chữ, component | Chỉ dùng component và token của UI kit; phần thiếu ghi `GAP` |
-| State và trường hợp biên | Phụ thuộc vào việc người hỏi có nhớ hay không | Bảy state cho mỗi màn, rà trường hợp biên theo danh mục, độ sâu theo mức của màn |
-| Kiểm soát chất lượng | Designer tự rà bằng mắt | Checklist, review độc lập theo thang điểm, script kiểm, chuẩn WCAG 2.2 mức AA |
-| Lưu vết và bàn giao | Phân tán trong lịch sử hội thoại | Quyết định ghi nguyên văn; link bàn giao ghim version Figma hoặc commit HTML |
-
-## 2. Nguyên lý nền
-
-| Nguyên lý | Áp dụng trong quy trình |
-|---|---|
-| AI thực hiện, Designer kiểm soát | Gate ở cuối mỗi stage; AI không quyết định thay Designer, chỉ đề xuất dưới nhãn Recommendation |
-| Hiểu trước, đồng thuận trước, vẽ sau | D1, D2 diễn ra trước khi dựng; D3 chờ các bên đồng thuận; giao diện chỉ được dựng sau Alignment Gate |
-| Không phân tích lại nghiệp vụ | PRD là đầu vào; khác biệt được ghi thành Ý kiến về PRD kèm lập trường và lý do; AI không sửa PRD |
-| Các bên ngoài tham gia ở cấp chiến lược | Các bên đồng thuận ở D3; chi tiết thiết kế do Designer quyết định |
-| Độ sâu tương ứng với độ khó của từng màn | Mức thiết kế L1, L2, L3 và độ phức tạp logic; đầu ra theo mức |
-| Tận dụng những gì đã có | Component của UI kit, pattern của các màn liền kề; phần thiếu chỉ được đề xuất bổ sung vào kit |
-| Bảo toàn thiết kế chính | Khu vực nháp trên Figma, lưu version trước khi ghi |
-| Kết quả phải đo được | Số đo, ảnh chụp, checklist; điều chưa kiểm được ghi vào mục Limitation |
-
-## 3. Quy trình
-
-### 3.1 Sơ đồ tổng thể
+| Mã | Stage | Phase | Việc chính |
+|---|---|---|---|
+| D1 | Context Overview | Discovery & Strategy | Đọc hiểu PRD và bối cảnh, lập câu hỏi cho PO |
+| D2 | Design Strategy | Discovery & Strategy | Flow, danh sách màn, state, trường hợp biên, mức thiết kế và đầu ra của từng màn |
+| D3 | Alignment | Discovery & Strategy | Đưa chiến lược lên repo của PO, chờ các bên đồng thuận |
+| E1 | UX Brief | Design Execution | Brief bố cục và nội dung cho màn L2, L3 |
+| E2 | UI Design | Design Execution | Giao diện trên Figma bằng UI kit |
+| E3 | Prototype | Design Execution | Prototype HTML thao tác được; thiết kế chính của màn chỉ HTML |
+| R1 | Review & Refine | Review, Refine & Deliver | Review độc lập, gom góp ý, sửa thiết kế |
+| H1 | Handoff & Done | Review, Refine & Deliver | Bàn giao cho Dev, cập nhật link trên repo của PO |
 
 ```mermaid
 flowchart LR
@@ -168,9 +79,95 @@ flowchart LR
   H1 -->|"cập nhật link Figma, HTML"| PO
 ```
 
-Sơ đồ trên: intent đi qua ba phase. Sau Alignment, màn L2 và L3 qua UX Brief; màn L1 đi Figma + HTML bắt đầu từ E2; màn L1 chỉ HTML đi thẳng tới E3. Mọi màn hội tụ ở R1 và H1, và H1 cập nhật link bàn giao vào repo của PO.
+Sơ đồ trên: intent đi qua ba phase. Sau Alignment, màn L2 và L3 qua UX Brief; màn L1 đi Figma + HTML bắt đầu từ E2; màn L1 chỉ HTML đi thẳng tới E3. Mọi màn hội tụ ở R1 và H1, và H1 cập nhật link bàn giao vào repo của PO. Mức L1, L2, L3 và cách chọn đầu ra của màn được giải thích ở mục 3.2.
 
-### 3.2 Các stage
+### 1.3 Vai trò
+
+| Vai | Trách nhiệm |
+|---|---|
+| AI | Đọc PRD và Product KB trước khi đặt câu hỏi; phân tích flow, màn, state, trường hợp biên; đề xuất mức thiết kế; dựng giao diện bằng instance của UI kit hoặc bằng HTML; dựng prototype; đo và tự kiểm; soạn file thiết kế UX và ghi chú bàn giao; ghi phần chưa rõ thành câu hỏi cho PO hoặc Designer (ký hiệu `❓PO`, `❓Designer`) thay vì suy đoán |
+| Designer | Phê duyệt hoặc yêu cầu sửa ở mỗi gate; quyết định mức thiết kế, đầu ra của màn, hướng thị giác và phương án; tự dựng giao diện cho màn cần sáng tạo hoặc khi muốn; xử lý góp ý |
+| AI Reviewer | Agent review độc lập, chỉ đọc thiết kế và tài liệu được giao, không tiếp cận hội thoại giữa Designer và AI; chấm điểm theo bảy trục và kết luận verdict |
+| PO | Cung cấp PRD đã duyệt; trả lời câu hỏi; cùng các bên đồng thuận chiến lược thiết kế ở D3. PO không duyệt chi tiết thiết kế; bản cuối được xem trên Figma và prototype |
+| BA, Dev, QA | Trả lời câu hỏi; góp ý ở R1; Dev nêu ý kiến về khả năng triển khai; nhận bàn giao |
+| Người phụ trách kit | Nhận đề xuất bổ sung component, quyết định việc dựng vào UI kit |
+| Người phụ trách quy trình | Duy trì engine và Product KB, tổng hợp bài học |
+
+Trình tự tương tác giữa các vai trong một intent điển hình:
+
+```mermaid
+sequenceDiagram
+  participant D as Designer
+  participant A as AI
+  participant L as AI Reviewer
+  participant P as PO và các bên
+  participant V as Dev
+  D->>A: Tạo intent từ PRD đã duyệt
+  A->>A: D1, D2 phân tích PRD, lập chiến lược
+  A->>D: Trình Strategy Gate
+  D->>A: Duyệt mức và đầu ra của từng màn
+  A->>P: D3 đưa chiến lược lên repo của PO
+  P->>A: Kết quả đồng thuận
+  A->>A: E1 đến E3 dựng giao diện và prototype
+  A->>L: R1 giao thiết kế để review độc lập
+  L->>D: Điểm theo bảy trục và verdict
+  V->>D: Góp ý về khả năng triển khai
+  D->>A: Duyệt UI Gate và Delivery Gate
+  A->>V: H1 bàn giao thiết kế
+```
+
+Sơ đồ trên: Designer khởi tạo intent và phê duyệt ở các gate; AI thực hiện phần phân tích, dựng và soạn tài liệu; PO và các bên chỉ tham gia ở bước đồng thuận chiến lược; AI Reviewer review độc lập trước khi Designer duyệt; Dev góp ý ở R1 và nhận bàn giao ở H1.
+
+### 1.4 Đầu ra bàn giao
+
+| Đầu ra | Người nhận | Thời điểm |
+|---|---|---|
+| Chiến lược thiết kế, đưa vào file thiết kế UX trên repo của PO | PO, Dev, QA | D3; cập nhật link ở H1 |
+| Thiết kế trên Figma, ghim version bàn giao | Dev, QA | H1, cho màn đi Figma + HTML |
+| File HTML: prototype của mọi màn, đồng thời là thiết kế chính của màn chỉ HTML, ghim theo commit | PO, Dev, QA | E3; ghim ở H1 |
+| `delivery-summary.md`: mục lục bàn giao và checklist cho Dev | Dev | H1 |
+| Đề xuất bổ sung UI kit, ghi trong gap log | Người phụ trách kit | Khi gặp phần tử kit chưa có |
+
+### 1.5 Đặc điểm chính
+
+| Đặc điểm | Cơ chế |
+|---|---|
+| Thống nhất chiến lược trước khi thiết kế | D3 đưa chiến lược lên repo của PO; giao diện chỉ được dựng sau khi Alignment Gate được thông qua |
+| Độ sâu theo từng màn | Mức L1, L2, L3 kết hợp với độ phức tạp logic quyết định UX Brief, review và đầu ra của màn |
+| Đầu ra gọn cho màn đơn giản | Màn chỉ ghép component có sẵn được thiết kế và bàn giao bằng HTML, không qua Figma, khi sản phẩm đủ điều kiện |
+| Bám đúng UI kit của sản phẩm | Giao diện dựng bằng instance của kit; phần tử kit chưa có được ghi `GAP` và đề xuất qua `/kit-proposal`, AI không tự dựng thay |
+| An toàn với file Figma | AI chỉ ghi vào khu vực nháp và lưu version có tên trước mỗi lần ghi |
+| Quyết định được lưu vết | Lời duyệt và câu trả lời ghi nguyên văn trong `decisions.md`; bản đã duyệt được chụp vào `archive/` |
+| Chất lượng đo được | Checklist có mục chặn, review độc lập, script kiểm sơ đồ và prototype; stage chỉ được báo hoàn thành sau khi đã đo |
+| Dùng chung cho nhiều sản phẩm và công cụ | Engine tách khỏi Product KB; bốn cách kết nối Figma; chạy được với công cụ AI khác qua `AGENTS.md`; cài đặt từ link repo bằng `/setup` |
+
+### 1.6 Khác biệt so với thiết kế trực tiếp bằng AI hội thoại
+
+| Khía cạnh | Dùng trực tiếp AI hội thoại | UIUX-Workflow |
+|---|---|---|
+| Hiểu yêu cầu | AI suy luận từ đoạn mô tả được dán vào | AI đọc PRD và Product KB, tách Confirmed, Assumption, Open question; điểm chưa rõ trở thành câu hỏi cho PO |
+| Thông tin còn thiếu | AI tự bổ sung | AI ghi thành câu hỏi cho người nắm thông tin: PO với nội dung yêu cầu, Designer với lựa chọn thiết kế. Câu hỏi chặn bước tiếp theo thì AI dừng lại chờ trả lời |
+| Bám design system | AI tự chọn màu, chữ, component | Chỉ dùng component và token của UI kit; phần thiếu ghi `GAP` |
+| State và trường hợp biên | Phụ thuộc vào việc người hỏi có nhớ hay không | Bảy state cho mỗi màn, rà trường hợp biên theo danh mục, độ sâu theo mức của màn |
+| Kiểm soát chất lượng | Designer tự rà bằng mắt | Checklist, review độc lập theo thang điểm, script kiểm, chuẩn WCAG 2.2 mức AA |
+| Lưu vết và bàn giao | Phân tán trong lịch sử hội thoại | Quyết định ghi nguyên văn; link bàn giao ghim version Figma hoặc commit HTML |
+
+## 2. Nguyên lý nền
+
+| Nguyên lý | Áp dụng trong quy trình |
+|---|---|
+| AI thực hiện, Designer kiểm soát | Gate ở cuối mỗi stage; AI không quyết định thay Designer, chỉ đề xuất dưới nhãn Recommendation |
+| Hiểu trước, đồng thuận trước, thiết kế sau | D1, D2 diễn ra trước khi dựng; D3 chờ các bên đồng thuận; giao diện chỉ được dựng sau Alignment Gate |
+| Không phân tích lại nghiệp vụ | PRD là đầu vào; khác biệt được ghi thành Ý kiến về PRD kèm lập trường và lý do; AI không sửa PRD |
+| Các bên ngoài tham gia ở cấp chiến lược | Các bên đồng thuận ở D3; chi tiết thiết kế do Designer quyết định |
+| Độ sâu tương ứng với độ khó của từng màn | Mức thiết kế L1, L2, L3 và độ phức tạp logic; đầu ra theo mức |
+| Tận dụng những gì đã có | Component của UI kit, pattern của các màn liền kề; phần thiếu chỉ được đề xuất bổ sung vào kit |
+| Bảo toàn thiết kế chính | Khu vực nháp trên Figma, lưu version trước khi ghi |
+| Kết quả phải đo được | Số đo, ảnh chụp, checklist; điều chưa kiểm được ghi vào mục Limitation |
+
+## 3. Quy trình
+
+### 3.1 Các stage
 
 | Phase | Stage | Mục đích | Đầu ra | Gate |
 |---|---|---|---|---|
@@ -183,7 +180,7 @@ Sơ đồ trên: intent đi qua ba phase. Sau Alignment, màn L2 và L3 qua UX B
 | Review, Refine & Deliver | R1 Review & Refine | Review độc lập; góp ý của BA, Dev; xử lý khả năng triển khai với Dev; sửa thiết kế | `feedback.md`, `design-review.md` | UI Gate |
 | | H1 Handoff & Done | Ghi chú bàn giao; ghim version; cập nhật file thiết kế UX trên repo PO | `delivery-summary.md` | Delivery Gate |
 
-### 3.3 Mức thiết kế và đầu ra của màn
+### 3.2 Mức thiết kế và đầu ra của màn
 
 Mỗi màn được gán một mức thiết kế ở D2 và được Designer duyệt ở Strategy Gate. Mức thiết kế quyết định nội dung UX Brief, người dựng giao diện và việc màn có cần Figma hay không.
 
@@ -221,7 +218,7 @@ Ba điều kiện để màn L1 đi làn chỉ HTML được khai một lần tr
 
 Khi một màn đã có trên Figma được sửa bằng HTML, H1 cập nhật lại màn đó trên Figma để file Figma luôn khớp với bản bàn giao. Trục thứ hai là độ phức tạp logic, gồm hai mức thường và phức tạp. Trục này quyết định độ sâu khi rà trường hợp biên, mức chi tiết của đặc tả hành vi, và việc review độc lập có bắt buộc hay không. Chi tiết ở `engine/protocol/design-levels.md`.
 
-### 3.4 Đường đi của một intent qua các gate
+### 3.3 Đường đi của một intent qua các gate
 
 ```mermaid
 flowchart LR
@@ -243,7 +240,7 @@ Sơ đồ trên: mọi intent qua Strategy, Alignment, UI và Delivery Gate. UX 
 
 Alignment Gate phụ thuộc vào các bên ngoài nhóm thiết kế nên thường chiếm nhiều thời gian nhất; trong thời gian chờ, Designer có thể xử lý việc khác.
 
-### 3.5 Gate và phản hồi
+### 3.4 Gate và phản hồi
 
 Mỗi gate trình bày bảng kết quả bằng số, đường dẫn để mở artifact, và bốn lựa chọn phản hồi theo hướng dẫn trước đây của team.
 
@@ -282,7 +279,7 @@ Từ lần Need Revision thứ ba, AI đề xuất Approved with Notes kèm đi�
 - E1 UX Brief: màn L2 có đề xuất component mới dựa trên style hiện có để Designer chọn; màn L3 có phân tích design ref, hai đến ba hướng thị giác và reference lock. Mọi màn có thứ bậc thông tin, wireframe dạng khối, nội dung chữ thật, tương tác và state.
 - E2 UI Design: với màn Figma + HTML, AI lưu version, dựng trong khu vực nháp bằng instance của kit, chia đợt đối với intent nhiều màn và tự kiểm chín tiêu chí bằng số đo. Màn L3 do Designer dẫn.
 - E3 Prototype: một file HTML mở được bằng trình duyệt, có bảng điều khiển đổi vai, đổi bộ dữ liệu và ép state. Màn Figma + HTML lấy cấu trúc từ frame Figma; màn chỉ HTML được dựng trực tiếp bằng component của frontend theo bảng ánh xạ và có chế độ ghi chú bàn giao. Prototype được kiểm theo ba bậc, mô tả ở mục 5.
-- R1 Review & Refine: ở vòng 1, agent UX Lead review độc lập và chấm điểm; ở vòng 2, góp ý của BA, Dev và Reviewer được gom vào feedback matrix. Ý kiến của Dev về khả năng triển khai mở Dev Feasibility Gate với hai đến ba phương án kèm trade-off.
+- R1 Review & Refine: ở vòng 1, agent AI Reviewer review độc lập và chấm điểm; ở vòng 2, góp ý của BA, Dev và Reviewer được gom vào feedback matrix. Ý kiến của Dev về khả năng triển khai mở Dev Feasibility Gate với hai đến ba phương án kèm trade-off.
 - H1 Handoff & Done: AI ghi chú bàn giao trên Figma hoặc trong file HTML; lưu version Figma và commit file HTML để ghim link; cập nhật file thiết kế UX trên repo PO; soạn `delivery-summary.md` và nội dung chuyển task sang Done. Intent kết thúc bằng một lượt hỏi về bài học cần lưu.
 
 Designer có thể diễn đạt yêu cầu bằng ngôn ngữ tự nhiên; AI định tuyến yêu cầu sang lệnh tương ứng theo bảng trong `AGENTS.md`.
@@ -309,7 +306,7 @@ flowchart LR
   K1["mermaid-lint.mjs,<br/>checklist chiến lược"] -.-> D2
   K2["Tự kiểm chín tiêu chí<br/>bằng số đo"] -.-> E2
   K3["prototype-audit.mjs,<br/>kiểm ba bậc"] -.-> E3
-  K4["UX Lead chấm bảy trục"] -.-> R1
+  K4["AI Reviewer chấm bảy trục"] -.-> R1
   K5["Checklist bàn giao,<br/>ghim version"] -.-> H1
 ```
 
@@ -319,7 +316,7 @@ Sơ đồ trên: D2 kiểm cú pháp sơ đồ và checklist chiến lược; E2
 |---|---|
 | Checklist từng stage | Mục `[BLOCK]` chặn gate cho tới khi đạt |
 | Tự kiểm giao diện | Chín tiêu chí trên Figma ở E2: độ phủ, biến, instance, chữ, icon, mode và breakpoint, accessibility, bố cục, nhất quán. Màn chỉ HTML có bộ tự kiểm riêng ở E3 |
-| Review độc lập | Agent UX Lead không thấy hội thoại thiết kế; chấm bảy trục: Requirement fit, Flow và IA, Heuristic, Visual hierarchy, Consistency, Accessibility, Responsive và nội dung. Bắt buộc với màn L2, L3 và màn logic phức tạp |
+| Review độc lập | Agent AI Reviewer không thấy hội thoại thiết kế; chấm bảy trục: Requirement fit, Flow và IA, Heuristic, Visual hierarchy, Consistency, Accessibility, Responsive và nội dung. Bắt buộc với màn L2, L3 và màn logic phức tạp |
 | Script | `mermaid-lint.mjs` kiểm cú pháp sơ đồ ở D2; `prototype-audit.mjs` kiểm prototype theo từng màn ở nhiều cỡ màn hình |
 | Accessibility | WCAG 2.2 mức AA: tương phản, vùng chạm, focus, tên trợ năng, không truyền thông tin chỉ bằng màu; ngưỡng riêng của sản phẩm khai ở Product KB mục 9 |
 | An toàn file thiết kế | Đọc trước, ghi sau; chỉ ghi vào khu vực nháp; lưu version trước khi ghi |
@@ -380,31 +377,6 @@ Sơ đồ trên: hai quy trình trao đổi qua repo của PO. UIUX-Workflow đ�
 | Phê duyệt | Product Lead review mang tính tham vấn; người duyệt ở gate | Strategy Gate do Designer; Alignment Gate do các bên; review độc lập ở R1 |
 
 Mục 1 đến 4 của `design-strategy.md` được đặt theo bốn artifact của stage 2.5 Refined Mockups, nhằm giảm khối lượng thay đổi khi chuyển sang AI-DLC.
-
-### 6.3 Lộ trình AI-DLC
-
-Giai đoạn hiện tại theo SDLC: thiết kế bắt đầu từ PRD đã duyệt. Khi chuyển sang AI-DLC, thiết kế tham gia từ sớm hơn.
-
-```mermaid
-flowchart LR
-  subgraph NOW["Hiện tại: SDLC"]
-    A1["PRD đã duyệt"] --> A2["D1 đến D3"] --> A3["E1 đến H1"]
-  end
-  subgraph NEXT["Sau khi chuyển sang AI-DLC"]
-    B1["1.6 Rough Mockups<br/>stage mới"] --> B2["2.4 User Stories<br/>Designer góp ý"] --> B3["2.5 Refined Mockups<br/>D2, D3"] --> B4["Construction<br/>E2, E3, R1, H1"]
-  end
-  A2 -.->|"đầu vào đổi sang user stories"| B3
-  A3 -.-> B4
-```
-
-Sơ đồ trên: D2, D3 hiện tại trở thành stage 2.5 Refined Mockups với đầu vào là user stories và requirements; E2 đến H1 trở thành phần việc thiết kế trong Construction; quy trình bổ sung một stage wireframe ở 1.6 và bước góp ý story ở 2.4.
-
-| AI-DLC | Việc của UIUX-Workflow |
-|---|---|
-| 1.6 Rough Mockups, sau Scope Definition | Stage mới: wireframe khung và user flow từ intent và scope, trước khi có PRD; dùng lại flow prototype |
-| 2.4 User Stories | Designer góp ý story ở mức giao diện |
-| 2.5 Refined Mockups | D2 và D3 hiện tại, đầu vào đổi từ PRD sang user stories và requirements |
-| Construction | E2, E3, R1, H1 hiện tại |
 
 ## 7. Cài đặt, cấu trúc repo và nâng cấp
 
@@ -479,7 +451,7 @@ Sơ đồ trên: khung quy trình đến từ hướng dẫn cũ của team, AWS
 | PO-Workflow | Điểm nhận và đẩy file thiết kế UX (stage 2.43); tách engine khỏi knowledge base của sản phẩm; hồ sơ intent, nhật ký quyết định, archive; định dạng câu hỏi; reviewer độc lập; vòng bài học; quy tắc kiểm sơ đồ Mermaid |
 | Bộ skill VIC (quy trình UI/UX và design system) | Discovery chi tiết, bản kê thay đổi, screen contract, rà trường hợp biên, flow map, review chấm điểm bảy trục, fix-prompt, luật thao tác Figma, review màn đang vận hành, tra luật design system |
 | `refero-design` | Design ref, phân tích ref, chống trung bình hoá, reference lock |
-| Các bộ skill dựng UI kit trên Figma | Gap log; đề xuất bổ sung kit dừng ở bước đề xuất; không vẽ tay phần kit còn thiếu |
+| Các bộ skill dựng UI kit trên Figma | Gap log; đề xuất bổ sung kit dừng ở bước đề xuất; không tự dựng phần kit còn thiếu |
 | [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), giấy phép MIT | Bảng chọn biểu đồ theo dạng dữ liệu; script kiểm prototype HTML theo nhiều cỡ màn hình |
 | WCAG 2.2, W3C | Chuẩn accessibility mức AA |
 | Mười heuristic của Jakob Nielsen; cognitive walkthrough | Trục Heuristic của review |

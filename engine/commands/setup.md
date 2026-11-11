@@ -40,7 +40,7 @@ Thiếu thì đưa cách cài theo `USER-GUIDE.md` mục A2 để Designer tự 
    - B: hướng dẫn Designer bật Dev Mode MCP Server trong Figma desktop. AI chạy `claude mcp add --transport http --scope user figma-desktop http://127.0.0.1:3845/mcp`.
    - C: hướng dẫn tạo personal access token trong Figma. Đưa lệnh `claude mcp add figma-console --scope user -e FIGMA_ACCESS_TOKEN=<token> -- npx -y figma-console-mcp@latest` để Designer tự dán token và chạy trong cửa sổ terminal riêng, để token không đi qua hội thoại. Hướng dẫn cài plugin Desktop Bridge theo tài liệu của `figma-console-mcp`.
    - D: không cài gì; nhắc cách gửi ảnh và link frame.
-4. Tên server giữ đúng `figma-desktop`, `figma-console`: agent review `.claude/agents/ux-lead.md` dùng các tên này. Server đã có sẵn với tên khác thì dùng server đó và thêm tên công cụ vào dòng `tools` của agent theo `USER-GUIDE.md` mục A3.
+4. Tên server giữ đúng `figma-desktop`, `figma-console`: agent review `.claude/agents/ai-reviewer.md` dùng các tên này. Server đã có sẵn với tên khác thì dùng server đó và thêm tên công cụ vào dòng `tools` của agent theo `USER-GUIDE.md` mục A3.
 
 ## 3. Repo của PO
 Hỏi một lần, ba lựa chọn theo `USER-GUIDE.md` mục A4: có link repo, chỉ có quyền đọc, không có repo.

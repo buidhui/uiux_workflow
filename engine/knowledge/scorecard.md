@@ -1,6 +1,6 @@
 # Scorecard của Design Review
 
-Dùng ở R1 và `/ux-review` (chế độ design review), do agent `ux-lead` chấm. Bảng điểm giúp người đọc biết trong một lần nhìn thiết kế đang ở mức nào và bước tiếp theo là gì. Trọng số bảy trục giữ theo bộ gốc. Mọi con số về mức trừ, sàn, trần, luật trần và ngưỡng verdict trong file này là đề xuất, chưa hiệu chỉnh; cách hiệu chỉnh ở mục cuối. Sản phẩm có điều chỉnh riêng thì ghi ở Product KB mục 9; agent áp điều chỉnh đó thay cho số trong file này.
+Dùng ở R1 và `/ux-review` (chế độ design review), do agent `ai-reviewer` chấm. Bảng điểm giúp người đọc biết trong một lần nhìn thiết kế đang ở mức nào và bước tiếp theo là gì. Trọng số bảy trục giữ theo bộ gốc. Mọi con số về mức trừ, sàn, trần, luật trần và ngưỡng verdict trong file này là đề xuất, chưa hiệu chỉnh; cách hiệu chỉnh ở mục cuối. Sản phẩm có điều chỉnh riêng thì ghi ở Product KB mục 9; agent áp điều chỉnh đó thay cho số trong file này.
 
 ## Bảy trục
 
@@ -116,7 +116,7 @@ Tự kiểm trước khi trả bảng điểm:
 ## Hiệu chỉnh
 
 1. Chọn bộ màn mẫu, đề xuất sáu đến mười màn đã qua R1, có đủ L1, L2, L3, có cả màn team đánh giá tốt và màn chưa tốt.
-2. Agent `ux-lead` chấm theo file này. Ít nhất một Designer, tốt nhất là hai, chấm độc lập cùng bộ màn: finding và mức, điểm từng trục, verdict mình cho là đúng. Designer không xem bảng của agent trước khi chấm xong.
+2. Agent `ai-reviewer` chấm theo file này. Ít nhất một Designer, tốt nhất là hai, chấm độc lập cùng bộ màn: finding và mức, điểm từng trục, verdict mình cho là đúng. Designer không xem bảng của agent trước khi chấm xong.
 3. So theo ba lớp: finding (cùng vấn đề, cùng mức), điểm trục, verdict.
 4. Sửa theo thứ tự: lệch ở mức finding thì sửa định nghĩa mức trước; agent trừ nặng hoặc nhẹ đều tay ở một mức thì chỉnh `r`, sàn, trần của mức đó; điểm gần nhau mà verdict lệch thì chỉnh ngưỡng verdict.
 5. Đạt khi (đề xuất): verdict của agent khớp Designer ở ít nhất tám trên mười màn, và chênh lệch tổng trung bình không quá năm điểm. Chưa đạt thì lặp lại với bộ màn khác.

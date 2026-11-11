@@ -9,7 +9,7 @@ status: draft
 ## 1. Feedback matrix
 | # | Người góp ý | Nội dung (nguyên văn) | Loại | Mức | Màn | Hướng xử lý | Trạng thái | Ghi chú |
 |---|---|---|---|---|---|---|---|---|
-| 1 | BA · Dev · Reviewer · Designer · UX Lead | | BA · Dev · Design · Lỗi UX · Lỗi UI | Bắt buộc · Tuỳ chọn | | | Mở · Đang sửa · Xong · Không làm · Chờ xác nhận · Chuyển CR | |
+| 1 | BA · Dev · Reviewer · Designer · AI Reviewer | | BA · Dev · Design · Lỗi UX · Lỗi UI | Bắt buộc · Tuỳ chọn | | | Mở · Đang sửa · Xong · Không làm · Chờ xác nhận · Chuyển CR | |
 
 ## 2. Dev feasibility
 | Vấn đề Dev nêu | Nằm ở | Phương án | Trade-off | Designer chọn | DEC |

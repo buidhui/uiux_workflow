@@ -37,7 +37,7 @@ Các mục A2 đến A7 mô tả từng lựa chọn, dùng khi Designer muốn 
 | Claude Code trong VS Code, ứng dụng desktop hoặc terminal | Cách chính, được hỗ trợ đầy đủ | Mở thư mục repo. Lệnh `/ux`, `/new-intent` và các lệnh khác có sẵn |
 | Công cụ AI khác đọc được repo (ví dụ Codex, Cursor) | Team đang dùng công cụ đó | Công cụ đọc `AGENTS.md`. Lệnh là file Markdown trong `engine/commands/`; yêu cầu AI đọc file lệnh, sau đó làm theo, ví dụ "đọc `engine/commands/ux.md` và làm theo". Kết nối Figma cài theo cách của công cụ đó, giữ tên server ở mục A3 |
 
-Với công cụ khác Claude Code, agent review độc lập có thể không chạy được như một agent riêng. Khi đó mở một phiên mới, đưa đúng các file mà `review-protocol.md` liệt kê và yêu cầu đóng vai UX Lead theo `engine/agents/ux-lead.md`; phiên review không được thấy hội thoại thiết kế.
+Với công cụ khác Claude Code, agent review độc lập có thể không chạy được như một agent riêng. Khi đó mở một phiên mới, đưa đúng các file mà `review-protocol.md` liệt kê và yêu cầu đóng vai AI Reviewer theo `engine/agents/ai-reviewer.md`; phiên review không được thấy hội thoại thiết kế.
 
 | Công cụ nền | Cần cho | Cách cài |
 |---|---|---|
@@ -97,7 +97,7 @@ Lựa chọn nào cho stage nào:
 | R1 review | Đọc, chụp ảnh, đọc biến | A, B, C | D: review qua ảnh; mọi nhận xét ghi nhãn Visual judgment, các trục cần số đo ghi N/A |
 | H1 ghi chú bàn giao | Ghi | A, C | Designer ghi theo nội dung AI soạn |
 
-Agent review và tên server: agent `ux-lead` chỉ được đọc Figma. Danh sách công cụ của agent nằm ở dòng `tools` của `.claude/agents/ux-lead.md`, đã có tên công cụ đọc của lựa chọn A, B (tên server `figma-desktop`) và C (tên server `figma-console`). Khi dùng server với tên khác, thêm tên công cụ chụp ảnh và đọc của server đó vào dòng `tools`, theo dạng `mcp__<tên server>__<tên công cụ>`; xem tên bằng lệnh `/mcp`.
+Agent review và tên server: agent `ai-reviewer` chỉ được đọc Figma. Danh sách công cụ của agent nằm ở dòng `tools` của `.claude/agents/ai-reviewer.md`, đã có tên công cụ đọc của lựa chọn A, B (tên server `figma-desktop`) và C (tên server `figma-console`). Khi dùng server với tên khác, thêm tên công cụ chụp ảnh và đọc của server đó vào dòng `tools`, theo dạng `mcp__<tên server>__<tên công cụ>`; xem tên bằng lệnh `/mcp`.
 
 ### A4. Repo của PO
 

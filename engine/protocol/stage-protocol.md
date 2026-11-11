@@ -31,7 +31,7 @@ Designer nói tự nhiên, gửi ảnh khoanh vùng, dán link Figma bất kỳ 
 | Consumes | Artifact đọc vào, ghi rõ bắt buộc hoặc tuỳ |
 | Requires | Stage phải xong trước |
 | Áp dụng | Màn nào, theo `design-levels.md` |
-| Reviewer | `ux-lead` hoặc `none` |
+| Reviewer | `ai-reviewer` hoặc `none` |
 | Archive | `yes` khi artifact có người ngoài Designer dùng; `no` khi chỉ là bước trung gian |
 | Template · Checklist · Knowledge | Đường dẫn file |
 

@@ -11,7 +11,13 @@ Thay đổi của engine UIUX-Workflow theo từng phiên bản. Mỗi bản có
 | Hiệu chỉnh `engine/knowledge/scorecard.md` | Agent và Designer chấm độc lập cùng một bộ màn, theo mục Hiệu chỉnh của file |
 | Kiểm các khả năng ghi "Kiểm khi cài" ở `USER-GUIDE.md` mục A3 trên một file thật | Dựng instance, lưu version, đọc design context; ghi kết quả vào `.uiux/setup.md` |
 | Chạy thử `/setup` trên một máy chưa cài gì, với từng lựa chọn Figma | Mới chạy trên một máy đã có sẵn công cụ |
-| Lộ trình AI-DLC | Sau khi luồng theo SDLC chạy ổn; README mục 6.3 |
+| Lộ trình AI-DLC | Sau khi luồng theo SDLC vận hành ổn định: thêm stage wireframe ở 1.6 Rough Mockups, góp ý story ở 2.4, D2 và D3 nhận đầu vào từ user stories ở 2.5 |
+
+## v0.11 - 2026-11-11
+
+Agent review độc lập đổi tên từ UX Lead thành AI Reviewer (`engine/agents/ai-reviewer.md`, `.claude/agents/ai-reviewer.md`), cùng cách gọi với agent review của PO-Workflow; agent chấm điểm và nêu verdict, không phê duyệt. README: mục 1.2 Vòng đời của một intent giới thiệu mã stage ngay từ đầu và chứa sơ đồ tổng thể; bỏ mục vị trí trong vòng đời sản phẩm và mục lộ trình AI-DLC; dùng "thiết kế" thay cho "vẽ"; giải thích rõ câu hỏi cho PO và Designer.
+
+Nâng cấp repo sản phẩm: sau `git pull engine main`, máy đã thêm tên công cụ Figma vào dòng `tools` của `.claude/agents/ux-lead.md` thì chép lại phần thêm đó sang `.claude/agents/ai-reviewer.md`; khi git báo xung đột ở file này, giữ tên file mới và dòng `tools` của máy.
 
 ## v0.10 - 2026-11-10
 

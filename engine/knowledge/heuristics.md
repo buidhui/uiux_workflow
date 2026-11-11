@@ -1,6 +1,6 @@
 # Heuristic và đánh giá trải nghiệm
 
-Dùng ở R1 Review & Refine và cho agent `ux-lead` (`engine/agents/ux-lead.md`). File này phủ các trục Requirement fit, Flow và IA, Heuristic, Visual hierarchy, Responsive và nội dung của `scorecard.md`. Trục Accessibility theo `accessibility.md`; trục Consistency với design system theo luật của domain ở `domain/design-system.md`.
+Dùng ở R1 Review & Refine và cho agent `ai-reviewer` (`engine/agents/ai-reviewer.md`). File này phủ các trục Requirement fit, Flow và IA, Heuristic, Visual hierarchy, Responsive và nội dung của `scorecard.md`. Trục Accessibility theo `accessibility.md`; trục Consistency với design system theo luật của domain ở `domain/design-system.md`.
 
 ## Năm nguyên tắc chấm
 

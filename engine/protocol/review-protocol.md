@@ -1,6 +1,6 @@
 # Review Protocol
 
-Review độc lập do agent `ux-lead` làm. Agent không thấy cuộc hội thoại, không thấy lý luận của AI soạn thảo hoặc AI dựng màn. Đó là chủ đích: màn do AI dựng không được chính AI đó chấm.
+Review độc lập do agent `ai-reviewer` làm. Agent không thấy cuộc hội thoại, không thấy lý luận của AI soạn thảo hoặc AI dựng màn. Đó là chủ đích: màn do AI dựng không được chính AI đó chấm.
 
 ## Hai chế độ
 
@@ -10,11 +10,11 @@ Review độc lập do agent `ux-lead` làm. Agent không thấy cuộc hội th
 | Design review | Trong R1 cho màn mà `design-levels.md` yêu cầu, hoặc khi Designer muốn; hoặc `/ux-review --shadow` | `delivery/review-refine/design-review.md`, hoặc `adhoc/<slug>/design-review.md` |
 
 ## Gọi reviewer
-- Dùng Task gọi agent `ux-lead` trong `.claude/agents/`.
+- Dùng Task gọi agent `ai-reviewer` trong `.claude/agents/`.
 - Truyền đường dẫn, không dán nội dung: command của stage, artifact cần review, artifact đầu vào, `GLOSSARY.md`, file knowledge liên quan, mục Product KB liên quan, file review lần trước nếu có.
 - Design review: AI điều phối đo số liệu trên Figma trước, ghi vào `delivery/review-refine/context.md` (node của từng section, biến đang gán, text style, kích thước, tương phản tính từ giá trị thật), sau đó truyền đường dẫn file này. Agent có quyền đọc Figma (ảnh chụp, metadata, biến) để tự nhìn thiết kế và kiểm lại số đo; không có quyền ghi. Không có số đo do AI điều phối thì agent tự đo, nhưng không được dựa vào nhận xét của AI điều phối về tính thẩm mỹ. Màn chỉ HTML: `context.md` chứa ảnh chụp từng màn ở các breakpoint, báo cáo `prototype-audit.mjs`, giá trị CSS đã tính của các phần tử được đo; agent đọc file HTML và ảnh chụp, không cần Figma.
 - Không truyền: `memory.md`, bản nháp, lý luận của AI soạn thảo.
-- Nói với Designer một câu: "Để UX Lead xem qua trước khi anh/chị đọc."
+- Nói với Designer một câu: "Để AI Reviewer xem qua trước khi anh/chị đọc."
 
 ## Tiêu chí scope review
 1. Mỗi user task có flow, mỗi bước flow có màn. Thiếu là finding.
@@ -33,7 +33,7 @@ Bảy trục và thang điểm theo `engine/knowledge/scorecard.md`. Màn L3 th�
 ```markdown
 # Review: design-strategy · lần <NN>
 **Verdict:** READY | NOT-READY
-**Reviewer:** ux-lead · **Date:** <ISO>
+**Reviewer:** ai-reviewer · **Date:** <ISO>
 
 ## Prior findings
 | ID | Now | Severity | Note |

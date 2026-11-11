@@ -3,7 +3,7 @@ intent: <slug | adhoc>
 artifact: design-review
 version: 0.1
 status: draft
-reviewer: ux-lead
+reviewer: ai-reviewer
 date: <YYYY-MM-DD>
 ---
 # Design Review: <tên màn hoặc section>

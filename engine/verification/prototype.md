@@ -7,6 +7,8 @@
 - [ ] Dùng thư viện component và theme theo KB mục 7, hoặc token của KB khi không có
 - [ ] Rule chưa được xác định thì hiện chú thích, không tự đặt hành vi
 - [ ] Một file HTML mở được bằng trình duyệt, không cần server, không gọi API thật
+- [ ] **[BLOCK]** `prototype-lint.mjs` không còn lỗi: khung file, meta định danh, thư viện ghim đúng version, không trỏ ra ngoài thư mục, cú pháp JavaScript. Máy không có Node thì đã rà theo `prototyping.md` mục Chuẩn file và ghi Limitation
+- [ ] Dữ liệu mẫu ổn định giữa các lần mở; cảnh báo còn lại của `prototype-lint.mjs` có lý do ghi ở `prototype-report.md`
 - [ ] **[BLOCK]** Đã kiểm theo bậc ở `prototyping.md` và ghi bậc đã dùng; đạt bậc 1 hoặc 2 thì đã chụp từng màn; điểm lệch với Figma ghi ở `prototype-report.md`; chỉ đạt bậc 3 thì Limitation nêu rõ chưa chạy thử
 - [ ] Có nhãn "Prototype" trên giao diện để không nhầm với sản phẩm thật
 

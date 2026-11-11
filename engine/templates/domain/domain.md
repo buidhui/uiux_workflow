@@ -67,7 +67,7 @@ Cách kết nối Figma và kết quả kiểm khả năng là thông tin của 
 - Thư viện component của frontend thật và version:
 - Theme hoặc token ở dạng code (file cấu hình, biến CSS) và đường dẫn:
 - Bộ icon, font:
-- Cách tải trong một file HTML (CDN được phép):
+- Cách tải trong một file HTML (CDN được phép, URL ghi đúng version đầy đủ như `@5.12.3`, không dùng `latest`):
 - Bảng ánh xạ component kit sang code (đường dẫn), dùng cho màn chỉ HTML. Chưa có bảng thì làn chỉ HTML chưa bật:
 
 ## 8. Nội dung

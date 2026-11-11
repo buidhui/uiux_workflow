@@ -305,19 +305,19 @@ flowchart LR
   D2["D2 Chiến lược"] --> E2["E2 UI trên Figma"] --> E3["E3 Prototype"] --> R1["R1 Review"] --> H1["H1 Bàn giao"]
   K1["mermaid-lint.mjs,<br/>checklist chiến lược"] -.-> D2
   K2["Tự kiểm chín tiêu chí<br/>bằng số đo"] -.-> E2
-  K3["prototype-audit.mjs,<br/>kiểm ba bậc"] -.-> E3
+  K3["prototype-lint.mjs, prototype-audit.mjs,<br/>kiểm ba bậc"] -.-> E3
   K4["AI Reviewer chấm bảy trục"] -.-> R1
   K5["Checklist bàn giao,<br/>ghim version"] -.-> H1
 ```
 
-Sơ đồ trên: D2 kiểm cú pháp sơ đồ và checklist chiến lược; E2 tự kiểm giao diện bằng số đo; E3 kiểm prototype bằng script; R1 có review độc lập; H1 kiểm checklist bàn giao và ghim version. Chuẩn WCAG 2.2 mức AA áp dụng xuyên suốt các bước.
+Sơ đồ trên: D2 kiểm cú pháp sơ đồ và checklist chiến lược; E2 tự kiểm giao diện bằng số đo; E3 kiểm prototype bằng hai script; R1 có review độc lập; H1 kiểm checklist bàn giao và ghim version. Chuẩn WCAG 2.2 mức AA áp dụng xuyên suốt các bước.
 
 | Lớp kiểm | Cơ chế |
 |---|---|
 | Checklist từng stage | Mục `[BLOCK]` chặn gate cho tới khi đạt |
 | Tự kiểm giao diện | Chín tiêu chí trên Figma ở E2: độ phủ, biến, instance, chữ, icon, mode và breakpoint, accessibility, bố cục, nhất quán. Màn chỉ HTML có bộ tự kiểm riêng ở E3 |
 | Review độc lập | Agent AI Reviewer không thấy hội thoại thiết kế; chấm bảy trục: Requirement fit, Flow và IA, Heuristic, Visual hierarchy, Consistency, Accessibility, Responsive và nội dung. Bắt buộc với màn L2, L3 và màn logic phức tạp |
-| Script | `mermaid-lint.mjs` kiểm cú pháp sơ đồ ở D2; `prototype-audit.mjs` kiểm prototype theo từng màn ở nhiều cỡ màn hình |
+| Script | `mermaid-lint.mjs` kiểm cú pháp sơ đồ ở D2; `prototype-lint.mjs` kiểm tĩnh file prototype (khung file, thư viện ghim version, dữ liệu mẫu ổn định, cú pháp JavaScript); `prototype-audit.mjs` kiểm prototype theo từng màn ở nhiều cỡ màn hình |
 | Accessibility | WCAG 2.2 mức AA: tương phản, vùng chạm, focus, tên trợ năng, không truyền thông tin chỉ bằng màu; ngưỡng riêng của sản phẩm khai ở Product KB mục 9 |
 | An toàn file thiết kế | Đọc trước, ghi sau; chỉ ghi vào khu vực nháp; lưu version trước khi ghi |
 | Báo cáo đúng mức đã kiểm | Stage chưa đo hoặc chưa chụp thì chưa được báo hoàn thành; prototype chưa chạy được trên trình duyệt thì không ghi "đã chạy thử"; phần chưa kiểm ghi vào Limitation |
@@ -330,10 +330,10 @@ flowchart TD
   Q1 -->|có| B1["Bậc 1: chạy thật trên trình duyệt"]
   Q1 -->|không| Q2{"Có Node và Playwright<br/>hoặc trình duyệt headless?"}
   Q2 -->|có| B2["Bậc 2: prototype-audit.mjs"]
-  Q2 -->|không| B3["Bậc 3: kiểm cú pháp,<br/>Designer xác nhận bằng mắt"]
+  Q2 -->|không| B3["Bậc 3: prototype-lint.mjs,<br/>Designer xác nhận bằng mắt"]
 ```
 
-Sơ đồ trên: AI dùng bậc kiểm cao nhất mà máy cho phép. Ở bậc 3, báo cáo ghi rõ prototype chưa được chạy thử và phần việc Designer cần tự xác nhận.
+Sơ đồ trên: AI dùng bậc kiểm cao nhất mà máy cho phép; `prototype-lint.mjs` chạy ở mọi bậc vì chỉ cần Node. Ở bậc 3, báo cáo ghi rõ prototype chưa được chạy thử và phần việc Designer cần tự xác nhận.
 
 Kiến thức chuyên môn dùng khi thiết kế và khi kiểm nằm ở `engine/knowledge/`: đọc yêu cầu, phân tích flow, rà trường hợp biên, bảy state, UX writing tiếng Việt, design ref, trực quan hoá dữ liệu, prototype, heuristic, accessibility và thang chấm review.
 
@@ -437,17 +437,18 @@ flowchart LR
   N6["Skill dựng UI kit"] --> G3
   N4 --> G4["Kiểm tra chất lượng"]
   N7 --> G4
+  N2 --> G4
   N3 --> G4
   N8["WCAG 2.2"] --> G4
   N9["Heuristic của Nielsen"] --> G4
 ```
 
-Sơ đồ trên: khung quy trình đến từ hướng dẫn cũ của team, AWS AI-DLC và PO-Workflow; phần phân tích và chiến lược dựa trên AWS AI-DLC, bộ skill VIC và ui-ux-pro-max-skill; phần thiết kế trên kit dựa trên bộ skill VIC, refero-design và các skill dựng UI kit; phần kiểm tra chất lượng dựa trên WCAG 2.2, heuristic của Nielsen, bộ skill VIC, ui-ux-pro-max-skill và quy tắc kiểm sơ đồ của PO-Workflow.
+Sơ đồ trên: khung quy trình đến từ hướng dẫn cũ của team, AWS AI-DLC và PO-Workflow; phần phân tích và chiến lược dựa trên AWS AI-DLC, bộ skill VIC và ui-ux-pro-max-skill; phần thiết kế trên kit dựa trên bộ skill VIC, refero-design và các skill dựng UI kit; phần kiểm tra chất lượng dựa trên WCAG 2.2, heuristic của Nielsen, bộ skill VIC, ui-ux-pro-max-skill, chuẩn file HTML của AWS AI-DLC và quy tắc kiểm sơ đồ của PO-Workflow.
 
 | Nguồn | Phần áp dụng trong quy trình |
 |---|---|
 | Hướng dẫn UI/UX Workflow cùng AI trước đây của team | Ba phase, các bước từ đọc yêu cầu tới bàn giao, gate, bốn cách phản hồi, bảy state cấp màn, feedback matrix, Dev Feasibility, prompt mẫu và lỗi thường gặp |
-| [AWS AI-DLC Workflows](https://github.com/awslabs/aidlc-workflows), giấy phép MIT-0 | Vai Design Agent và stage 1.6, 2.5: bốn mục đầu của chiến lược thiết kế; kiến thức về interaction pattern, UX, accessibility (đã sửa theo WCAG 2.2); cấu trúc stage và gate, qua PO-Workflow |
+| [AWS AI-DLC Workflows](https://github.com/awslabs/aidlc-workflows), giấy phép MIT-0 | Vai Design Agent và stage 1.6, 2.5: bốn mục đầu của chiến lược thiết kế; kiến thức về interaction pattern, UX, accessibility (đã sửa theo WCAG 2.2); cấu trúc stage và gate, qua PO-Workflow; chuẩn file HTML tự đủ, meta định danh và kiểm cấu trúc tĩnh cho prototype |
 | PO-Workflow | Điểm nhận và đẩy file thiết kế UX (stage 2.43); tách engine khỏi knowledge base của sản phẩm; hồ sơ intent, nhật ký quyết định, archive; định dạng câu hỏi; reviewer độc lập; vòng bài học; quy tắc kiểm sơ đồ Mermaid |
 | Bộ skill VIC (quy trình UI/UX và design system) | Discovery chi tiết, bản kê thay đổi, screen contract, rà trường hợp biên, flow map, review chấm điểm bảy trục, fix-prompt, luật thao tác Figma, review màn đang vận hành, tra luật design system |
 | `refero-design` | Design ref, phân tích ref, chống trung bình hoá, reference lock |

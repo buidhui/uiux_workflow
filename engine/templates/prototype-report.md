@@ -37,3 +37,8 @@ Mở: <đường dẫn `execution/prototype/index.html`, hoặc link nếu đã 
 
 ## 6. Figma prototype
 <Có nối điều hướng giữa frame không, ở page nào. Chưa chạy thử.>
+
+## 7. Kiểm tra
+- Bậc kiểm đã dùng theo `prototyping.md` mục Cách kiểm prototype: <1 · 2 · 3>; ở bậc 3, flow Designer đã xác nhận:
+- `prototype-lint.mjs`: <số lỗi, số cảnh báo>. Cảnh báo còn lại và lý do giữ:
+- `prototype-audit.mjs` (bậc 2): <đường dẫn report.md, hoặc "không chạy">

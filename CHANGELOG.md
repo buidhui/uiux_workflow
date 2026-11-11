@@ -17,7 +17,9 @@ Thay đổi của engine UIUX-Workflow theo từng phiên bản. Mỗi bản có
 
 Agent review độc lập đổi tên từ UX Lead thành AI Reviewer (`engine/agents/ai-reviewer.md`, `.claude/agents/ai-reviewer.md`), cùng cách gọi với agent review của PO-Workflow; agent chấm điểm và nêu verdict, không phê duyệt. README: mục 1.2 Vòng đời của một intent giới thiệu mã stage ngay từ đầu và chứa sơ đồ tổng thể; bỏ mục vị trí trong vòng đời sản phẩm và mục lộ trình AI-DLC; dùng "thiết kế" thay cho "vẽ"; giải thích rõ câu hỏi cho PO và Designer.
 
-Nâng cấp repo sản phẩm: sau `git pull engine main`, máy đã thêm tên công cụ Figma vào dòng `tools` của `.claude/agents/ux-lead.md` thì chép lại phần thêm đó sang `.claude/agents/ai-reviewer.md`; khi git báo xung đột ở file này, giữ tên file mới và dòng `tools` của máy.
+Chuẩn file prototype, tham khảo HTML artifact protocol của AWS AI-DLC: `prototyping.md` thêm mục Chuẩn file (meta định danh `uiux-intent`, `uiux-screens`, `uiux-version`; thư viện tải từ CDN ghi đúng version đầy đủ; ảnh nằm trong thư mục prototype; dữ liệu mẫu ổn định giữa các lần mở; phần tử và lời gọi mạng bị cấm). Script mới `engine/scripts/prototype-lint.mjs` kiểm tĩnh các điểm này và cú pháp JavaScript, chỉ cần Node; bậc 3 của cách kiểm prototype dùng script này. Checklist E3 có mục chặn cho kết quả lint; `prototype-report.md` thêm mục Kiểm tra; khung Product KB mục 7 yêu cầu URL ghim version.
+
+Nâng cấp repo sản phẩm: sau `git pull engine main`, máy đã thêm tên công cụ Figma vào dòng `tools` của `.claude/agents/ux-lead.md` thì chép lại phần thêm đó sang `.claude/agents/ai-reviewer.md`; khi git báo xung đột ở file này, giữ tên file mới và dòng `tools` của máy. Product KB mục 7: sửa URL CDN sang version đầy đủ. Prototype đang làm dở: thêm ba thẻ meta định danh rồi chạy `prototype-lint.mjs`.
 
 ## v0.10 - 2026-11-10
 
